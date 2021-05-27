@@ -1,0 +1,143 @@
+<template>
+  <div class="container">
+    <div class="register">
+      <h2 class="title">Inscription :</h2>
+      <p>Merci de complèter ce formulaire afin de vous créer un compte.</p>
+
+      <input v-model="name" placeholder="IDENTIFIANT" />
+
+      <input v-model="email" placeholder="EMAIL" />
+
+      <input type="password" v-model="pwd" placeholder="MOT DE PASSE" />
+
+      <input type="password" v-model="pwd_confirm" placeholder="CONFIRMATION" />
+      <button type="button" class="btn" id="createbtn" v-on:click="createUser">
+        INSCRIPTION
+      </button>
+
+      <VFacebookLogin />
+
+      <router-link tag="li" to="/login">
+        <p>Vous avez déjà un compte ?</p>
+      </router-link>
+
+      <h2>{{ registererrormessage }}</h2>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+import VFacebookLogin from "./FacebookLogin.vue";
+
+export default {
+  name: "Register",
+
+  components: {
+    VFacebookLogin,
+  },
+
+  data() {
+    return {
+      // status: "",
+      name: "",
+      email: "",
+      pwd: "",
+      pwd_confirm: "",
+      registererrormessage: "",
+      // FB: {},
+      // model: {},
+      // scope: {},
+    };
+  },
+
+  methods: {
+    //REGISTER :
+    createUser() {
+      console.log("triggered");
+      if (![this.name, this.email, this.pwd, this.pwd_confirm].every(Boolean)) {
+        console.log("NULL");
+        this.registererrormessage = "All fields are required !";
+      } else {
+        if (this.pwd == this.pwd_confirm) {
+          // console.log("PWD MATCHES");
+          console.log("ATTEMPT TO CREATE USER");
+          axios
+            .post("http://localhost:8000/api/register", {
+              facebookID: "1",
+              name: this.name,
+              email: this.email,
+              password: this.pwd,
+              password_confirmation: this.pwd_confirm,
+            })
+            .then((response) => {
+              this.registererrormessage = "Thank you !";
+              this.$router.push({ path: "/login" });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          this.registererrormessage =
+            "Password and confirmation doesn't match !";
+        }
+      }
+    },
+  },
+};
+</script>
+
+<style scoped>
+.container {
+  color: black;
+  text-align: center;
+  font-family: "Racing Sans One", sans-serif !important;
+}
+
+input {
+  font-size: 15px;
+  color: black;
+  width: 15%;
+  text-align: center;
+  padding: 12px 20px;
+  margin: 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: "Racing Sans One", sans-serif !important;
+}
+input::placeholder {
+  color: black;
+  font-weight: bold;
+}
+.title {
+  font-size: 40px;
+  font-family: "Racing Sans One", sans-serif !important;
+}
+#createbtn {
+  color: black;
+  font-weight: bold;
+  font-family: "Racing Sans One", sans-serif !important;
+  font-size: 15px;
+  background-color: grey;
+}
+#loginbtn {
+  color: black;
+  font-weight: bold;
+  background-color: grey;
+}
+#profilebtn {
+  color: black;
+  font-weight: bold;
+  background-color: grey;
+}
+#logoutbtn {
+  color: black;
+  font-weight: bold;
+  background-color: grey;
+}
+a {
+  color: blue;
+}
+</style>

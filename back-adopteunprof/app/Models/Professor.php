@@ -7,8 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class Professor extends Model
 {
     protected $fillable = [
-        'userID', 'name', 'age'
-        // , 'job', 'salary'
+        'userID',
+        'firstname',
+        'lastname',
+        'avatar',
+        'age',
+        'adresse',
+        'phone',
+        'matieres',
+        'description',
+        'information_bancaire',
+        'annoncesID',
+        'cours',
+        'notes',
+        'commentaires',
+        'historique_cours',
+        'historique_paiement',
+        'archives_conversation',
     ];
-}
 
+    /**
+     * Get the user that owns the prof profile.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID');
+    }
+}

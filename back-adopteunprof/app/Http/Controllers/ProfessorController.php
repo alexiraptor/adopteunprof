@@ -18,9 +18,11 @@ class ProfessorController extends Controller
     public function index()
     {
         $professors = Professor::all();
-        return response([ 'professors' => 
-        ProfessorResource::collection($professors), 
-        'message' => 'Successful'], 200);
+        return response([
+            'professors' =>
+            ProfessorResource::collection($professors),
+            'message' => 'Successful'
+        ], 200);
     }
 
     /**
@@ -35,23 +37,39 @@ class ProfessorController extends Controller
 
         $validator = Validator::make($data, [
             'userID' => 'required|max:50',
-            'name' => 'required|max:50',
-            'age' => 'required|max:50'
-            // ,
-            // 'job' => 'required|max:50',
-            // 'salary' => 'required|50'
+            'firstname' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'avatar' => 'max:255',
+            'age' => 'required|max:3',
+            'adresse' => 'required|max:150',
+            'phone' => 'required|max:10',
+            'matieres' => 'required|max:50',
+            'description' => 'required|max:500',
+            'information_bancaire' => 'required|max:50',
+            'annoncesID' => 'max:50',
+            'cours' => 'max:50',
+            'notes' => 'max:50',
+            'commentaires' => 'max:255',
+            'historique_cours' => 'max:255',
+            'historique_paiement' => 'max:255',
+            'archives_conversation' => 'max:255'
+
         ]);
 
-        if($validator->fails()){
-            return response(['error' => $validator->errors(), 
-            'Validation Error']);
+        if ($validator->fails()) {
+            return response([
+                'error' => $validator->errors(),
+                'Validation Error'
+            ]);
         }
 
         $professors = Professor::create($data);
 
-        return response([ 'professors' => new 
-        professorResource($professors), 
-        'message' => 'Success'], 200);
+        return response([
+            'professors' => new
+                ProfessorResource($professors),
+            'message' => 'Success'
+        ], 200);
     }
 
     /**
@@ -60,11 +78,10 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function show(Professor $professors)
+    public function show(Professor $professor)
     {
-        return response([ 'professors' => new 
-        ProfessorResource($professors), 'message' => 'Success'], 200);
-
+        return response(['professor' => new
+            ProfessorResource($professor), 'message' => 'Success'], 200);
     }
 
     /**
@@ -74,12 +91,12 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Professor $professors)
+    public function update(Request $request, Professor $professor)
     {
-        $professors->update($request->all());
+        $professor->update($request->all());
 
-        return response([ 'professors' => new 
-        professorResource($professors), 'message' => 'Success'], 200);
+        return response(['professors' => new
+            professorResource($professor), 'message' => 'Success'], 200);
     }
 
     /**
@@ -88,9 +105,9 @@ class ProfessorController extends Controller
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Professor $professors)
+    public function destroy(Professor $professor)
     {
-        $professors->delete();
+        $professor->delete();
 
         return response(['message' => 'Professor deleted']);
     }
