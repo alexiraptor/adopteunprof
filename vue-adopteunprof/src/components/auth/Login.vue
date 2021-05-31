@@ -1,21 +1,26 @@
 <template>
   <div class="container">
     <div class="login">
-      <h2 class="title">Login :</h2>
+      <h2 class="title">Login</h2>
 
-      <input v-model="email" placeholder="EMAIL" />
-
-      <input type="password" v-model="pwd" placeholder="MOT DE PASSE" />
-
-      <button type="button" class="btn" id="loginbtn" v-on:click="loginUser">
-        LOGIN
+      <input v-model="email" placeholder="email" />
+      <br />
+      <input type="password" v-model="pwd" placeholder="mot de passe" />
+      <br />
+      <button
+        type="button"
+        class="btn btn-primary"
+        id="loginbtn"
+        v-on:click="loginUser"
+      >
+        Se connecter
       </button>
 
       <router-link tag="li" to="/register">
         <p>Pas encore inscrit ?</p>
       </router-link>
 
-      <h2>{{ loginerrormessage }}</h2>
+      <h2 class="error">{{ loginerrormessage }}</h2>
     </div>
   </div>
 </template>
@@ -25,10 +30,6 @@ import axios from "axios";
 
 export default {
   name: "Login",
-
-  // components: {
-  //       FacebookLogin
-  //   },
 
   data() {
     return {
@@ -53,7 +54,7 @@ export default {
           })
           .then((response) => {
             console.log(response);
-            this.loginerrormessage = "Bienvenu !";
+
             // ID :
             console.log("ID IS :");
             var userid = response.data.user.id;
@@ -65,6 +66,7 @@ export default {
             console.log("TOKEN IS :");
             this.$cookies.set("authtoken", token);
             console.log(this.$cookies.get("authtoken"));
+
             this.$router.push({ path: "/profile" });
           })
           .catch((error) => {
@@ -72,50 +74,80 @@ export default {
           });
       }
     },
-    logout() {
-      localStorage.clear();
-      this.$cookies.remove("userID");
-      this.$cookies.remove("authtoken");
-      console.log(this.$cookies.get("authtoken"));
-      // this.$router.push({ path: '/' })
-    },
   },
 };
 </script>
 
 <style scoped>
 .container {
-  color: black;
-  text-align: center;
-  font-family: "Racing Sans One", sans-serif !important;
+  font-family: "poppins", sans-serif;
+  max-width: 400px;
+  height: 400px;
 }
 input {
-  font-size: 15px;
-  color: black;
-  width: 15%;
-  text-align: center;
-  padding: 12px 20px;
-  margin: 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: "Racing Sans One", sans-serif !important;
+  color: #222a35;
+  opacity: 1;
+  height: 47px;
+  border: 1px solid #d8efdb;
+  background-color: transparent;
+  border-radius: 5px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  display: block;
 }
 input::placeholder {
   color: black;
-  font-weight: bold;
+  text-align: left;
 }
 .title {
-  font-size: 40px;
-  font-family: "Racing Sans One", sans-serif !important;
+  letter-spacing: -2px;
+  text-align: center !important;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: "poppins", sans-serif;
+  color: #222a35;
+  margin-top: 70px;
+  margin-bottom: 40px;
 }
 #loginbtn {
-  color: black;
-  font-weight: bold;
-  background-color: grey;
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms ease-out;
+  margin-top: 10px;
+  float: right;
 }
-a {
-  color: blue;
+#loginbtn:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
+  color: black;
+}
+p {
+  color: black;
+  text-align: right;
+  font-size: 12px;
+  margin-top: 60px;
+}
+p:hover {
+  color: #5caf01;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
 }
 </style>

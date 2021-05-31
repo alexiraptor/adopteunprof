@@ -4,10 +4,13 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
   />
   <div id="nav">
-    <div class="ui main container">
-      <MyForm :form="form" @onFormSubmit="onFormSubmit" />
-
+    <div>
       <StudentList :students="students" @onDelete="onDelete" @onEdit="onEdit" />
+      <br />
+    </div>
+
+    <div class="formS">
+      <MyForm :form="form" @onFormSubmit="onFormSubmit" />
     </div>
   </div>
 </template>
@@ -33,8 +36,18 @@ export default {
         userID: "",
         firstname: "",
         lastname: "",
-        email: "",
+        avatar: "",
         age: "",
+        adresse: "",
+        phone: "",
+        description: "",
+        information_bancaire: "",
+        cours: "",
+        hobby: "",
+        commentaires: "",
+        historique_cours: "",
+        historique_paiement: "",
+        archives_conversation: "",
         isEdit: false,
       },
       loader: false,
@@ -93,8 +106,18 @@ export default {
             userID: data.userID,
             firstname: data.firstname,
             lastname: data.lastname,
-            email: data.email,
+            avatar: data.avatar,
             age: data.age,
+            adresse: data.adresse,
+            phone: data.phone,
+            description: data.description,
+            information_bancaire: data.information_bancaire,
+            cours: data.cours,
+            hobby: data.hobby,
+            commentaires: data.commentaires,
+            historique_cours: data.historique_cours,
+            historique_paiement: data.historique_paiement,
+            archives_conversation: data.archives_conversation,
           },
         })
         .then(() => {
@@ -124,8 +147,18 @@ export default {
             userID: data.userID,
             firstname: data.firstname,
             lastname: data.lastname,
-            email: data.email,
+            avatar: data.avatar,
             age: data.age,
+            adresse: data.adresse,
+            phone: data.phone,
+            description: data.description,
+            information_bancaire: data.information_bancaire,
+            cours: data.cours,
+            hobby: data.hobby,
+            commentaires: data.commentaires,
+            historique_cours: data.historique_cours,
+            historique_paiement: data.historique_paiement,
+            archives_conversation: data.archives_conversation,
           },
         })
         .then(() => {
@@ -159,8 +192,8 @@ export default {
 </script>
 
 <style scoped>
-.main.container {
-  margin-top: 60px;
+#nav {
+  margin-top: 40px;
 }
 
 thead tr th {
@@ -169,5 +202,10 @@ thead tr th {
 
 .ui.inverted.dimmer {
   background-color: rgba(225, 255, 255, 0) !important;
+}
+
+.formS {
+  margin-top: 30px;
+  text-align: center;
 }
 </style>

@@ -57,7 +57,7 @@ export default {
 
           axios
             .post("http://localhost:8000/api/register", {
-              facebookID: "1",
+              facebookID: this.$cookies.get("userID"),
               name: this.name,
               email: this.email,
               password: this.pwd,

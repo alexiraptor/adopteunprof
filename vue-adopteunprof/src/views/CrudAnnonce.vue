@@ -30,7 +30,7 @@ export default {
       url: "http://localhost:8000/api/annonces",
       annonces: [],
       form: {
-        professorID: "",
+        professor_name: "",
         matieres: "",
         content: "",
         tarifs: "",
@@ -89,7 +89,7 @@ export default {
             Authorization: `Bearer ${token}`,
           },
           data: {
-            professorID: data.professorID,
+            professor_name: data.professor_name,
             matieres: data.matieres,
             content: data.content,
             tarifs: data.tarifs,
@@ -119,7 +119,7 @@ export default {
             Authorization: `Bearer ${token}`,
           },
           data: {
-            professorID: data.professorID,
+            professor_name: data.professor_name,
             matieres: data.matieres,
             content: data.content,
             tarifs: data.tarifs,

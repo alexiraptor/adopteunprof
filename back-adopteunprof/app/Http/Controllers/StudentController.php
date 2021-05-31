@@ -37,20 +37,13 @@ class StudentController extends Controller
 
         $validator = Validator::make($data, [
             'userID' => 'required|max:50',
-            'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'avatar' => 'max:255',
-            'age' => 'required|max:3',
-            'adresse' => 'required|max:150',
-            'phone' => 'required|max:10',
-            'description' => 'required|max:500',
-            'information_bancaire' => 'required|max:50',
-            'cours' => 'max:50',
-            'hobby' => 'max:50',
-            'commentaires' => 'max:255',
-            'historique_cours' => 'max:255',
-            'historique_paiement' => 'max:255',
-            'archives_conversation' => 'max:255'
+            'firstname' => 'required|max:50',
+            'lastname' => 'required|max:50',
+            'email' => 'required|max:50',
+            'age' => 'required|max:50',
+            // ,
+            // 'job' => 'required|max:50',
+            // 'salary' => 'required|50'
         ]);
 
         if ($validator->fails()) {
@@ -107,5 +100,10 @@ class StudentController extends Controller
         $student->delete();
 
         return response(['message' => 'Student deleted']);
+    }
+
+    public function showcomment($id) {
+        $comment = Student::find($id)->stud;
+        return $comment->toJson();
     }
 }

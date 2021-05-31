@@ -8,12 +8,13 @@
             <th>Name</th>
             <th>Email</th>
             <th>Password</th>
+            <th>FacebookID</th>
             <th style="width: 190px">Action</th>
           </tr>
         </thead>
 
         <tbody>
-          <Annonce
+          <User
             v-for="user in users"
             :key="user.id"
             :user="user"

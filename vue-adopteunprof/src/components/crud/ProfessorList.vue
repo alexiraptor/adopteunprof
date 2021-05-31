@@ -6,11 +6,13 @@
           <tr>
             <th>#</th>
             <th>User ID</th>
-            <th>First name</th>
-            <th>Last name</th>
+            <th>Professor ID</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Avatar</th>
             <th>Age</th>
             <th>Adresse</th>
-            <th>Phone</th>
+            <th>Téléphone</th>
             <th>Matières</th>
             <th>Description</th>
             <th>Informations bancaires</th>

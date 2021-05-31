@@ -7,9 +7,7 @@
             <img
               src="https://futureofworking.com/wp-content/uploads/2021/03/math-teacher-interview-questions.jpg"
               class="attachment-course"
-              srcset="
-                http://webdesign-finder.com/tutor/wp-content/uploads/2019/03/course01-1.jpg 1170w
-              "
+              srcset="@/assets/course01-1.jpg 1170w"
               sizes="(max-width: 1170px) 100vw, 1170px"
               width="1170"
               height="780"
@@ -18,7 +16,7 @@
           <div class="course-detail">
             <div class="course-meta">
               <div class="course-meta-title">
-                <h6 class="course-title">Cours de Mathématiques</h6>
+                <h6 class="course-title">{{ annonces.content }}</h6>
                 <!-- course title -->
               </div>
             </div>
@@ -30,7 +28,7 @@
               <div class="button">
                 <button type="button" class="btn">
                   <!--{{ professors.firstname }} {{ professors.lastname }}-->
-                  DA
+                  {{ annonces.professorID }}
                 </button>
               </div>
               <br />
@@ -38,13 +36,18 @@
                 <a>Matière</a>
               </div>
               <div class="button">
-                <button type="button" class="btn">{{ annonces.tarifs }}</button>
+                <button type="button" class="btn">
+                  {{ annonces.matières }}
+                </button>
               </div>
               <br />
               <div class="bloc-price">
-                <div class="price">49,00 €</div>
+                <div class="price">{{ annonces.tarifs }} €</div>
                 <button type="button-reserver" class="btn-reserver">
                   Réserver
+                </button>
+                <button type="button-chat" class="btn-chat">
+                  <router-link to="/chat"> Discuter </router-link>
                 </button>
               </div>
             </div>
@@ -70,7 +73,7 @@ export default {
 
 <style scoped>
 .all {
-  display: flex;
+  /*display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
   position: relative;
@@ -78,12 +81,16 @@ export default {
   align-items: center !important;
   justify-content: flex-start !important;
   margin-right: auto;
-  margin-left: auto;
-  margin-top: -50px;
+  margin-left: auto;*/
+  width: 33.333333%;
+  margin-bottom: 30px;
+  padding-right: 15px;
+  padding-left: 15px;
+  box-sizing: border-box;
 }
 
 .course-entry {
-  margin-bottom: 30px;
+  /*margin-bottom: 30px;
   flex: 0 0 33.333333%;
   max-width: 33.333333%;
   position: relative;
@@ -91,7 +98,8 @@ export default {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  box-sizing: border-box;
+  box-sizing: border-box;*/
+  min-height: 1px;
 }
 
 .course-item-content {
@@ -197,9 +205,31 @@ h6 {
   position: absolute;
   transition: all 300ms ease-out;
   margin-left: 150px;
-  margin-top: -35px;
+  margin-top: -80px;
 }
 
+.btn-chat {
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  position: absolute;
+  transition: all 300ms ease-out;
+  margin-left: 150px;
+  margin-top: -30px;
+}
+
+.btn-chat:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
+  color: black;
+}
 .btn-reserver:hover {
   background-color: transparent;
   border: 2px solid #5caf01;

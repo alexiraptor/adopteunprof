@@ -2,8 +2,10 @@
   <tr>
     <td>{{ professor.id }}</td>
     <td>{{ professor.userID }}</td>
+    <td>{{ professor.professorID }}</td>
     <td>{{ professor.firstname }}</td>
     <td>{{ professor.lastname }}</td>
+    <td>{{ professor.avatar }}</td>
     <td>{{ professor.age }}</td>
     <td>{{ professor.adresse }}</td>
     <td>{{ professor.phone }}</td>

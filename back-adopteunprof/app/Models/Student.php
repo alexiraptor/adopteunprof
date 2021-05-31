@@ -27,8 +27,8 @@ class Student extends Model
     /**
      * Get the user that owns the student profile.
      */
-    public function user()
+    public function stud()
     {
-        return $this->belongsTo(User::class, 'userID');
+        return $this->hasMany(Comment::class, 'studentID');
     }
 }

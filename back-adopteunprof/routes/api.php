@@ -21,25 +21,30 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-// GET INFOS :
+// GET COMMENTS:
+Route::get('/comments/{id}', [StudentController::class, 'showcomment']);
+
+// GET INFOS //
 Route::get('/user/{id}', [UserAuthController::class, 'showuser']);
 Route::get('/prof/{id}', [UserAuthController::class, 'showprof']);
 Route::get('/stud/{id}', [UserAuthController::class, 'showstud']);
-// ROUTES LOGIN USER //
 
+// ROUTES LOGIN USER //
 Route::post('/register', [UserAuthController::class, 'register']);
 Route::post('/login', [UserAuthController::class, 'login']);
+Route::get('/ratings/{id}', [ProfessorController::class, 'showrate']);
 
 // ROUTES CRUD USER //
-
 Route::get('/users', [UserAuthController::class, 'index']);
 Route::post('/users', [UserAuthController::class, 'store']);
-route::put('/users/{user}', [UserAuthController::class, 'update']);
+Route::put('/users/{user}', [UserAuthController::class, 'update']);
 Route::delete('users/{user}', [UserAuthController::class, 'destroy']);
 
 Route::apiResource('/comments', CommentController::class)->middleware('auth:api');
 
 Route::apiResource('/student', StudentController::class)->middleware('auth:api');
+Route::apiResource('/student/products', ProductsController::class)->middleware('auth:api');
+
 
 Route::apiResource('/professor', ProfessorController::class)->middleware('auth:api');
 

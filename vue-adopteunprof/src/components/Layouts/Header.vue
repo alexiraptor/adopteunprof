@@ -26,7 +26,9 @@
                   id="menu-item-692"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-692"
                 >
-                  <a href="#">Liste des cours</a>
+                  <router-link to="/listecours">
+                    <a>Liste des cours</a>
+                  </router-link>
                 </li>
                 <li
                   id="menu-item-492"
@@ -34,20 +36,35 @@
                 >
                   <a href="#">Professeurs</a>
                 </li>
-                <li
+                <!-- <li
                   id="menu-item-413"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-413"
                 >
                   <a href="#">Nous contacter</a>
-                </li>
+                </li> -->
               </ul>
             </nav>
           </div>
           <div class="col-3 col-lg-1 d-none d-xl-flex justify-content-lg-end">
-              <router-link to="/login">
-                <a href="#" class="login_modal_window modal_window">
-                  <i class="bi bi-person-fill"></i>Login</a>
-              </router-link>
+            <router-link to="/login">
+              <a href="#" class="login_modal_window modal_window">
+                <i class="bi bi-person-fill"></i>Login</a
+              >
+            </router-link>
+
+            <router-link to="/register">
+              <a href="#" class="login_modal_window modal_window">
+                <i class="bi bi-person-fill"></i>Register</a
+              >
+            </router-link>
+
+            <a
+              v-on:click="logout"
+              href="#"
+              class="login_modal_window modal_window"
+            >
+              <i class="bi bi-person-fill"></i>Logout</a
+            >
           </div>
         </div>
       </div>
@@ -56,6 +73,23 @@
 </template>
 
 <script>
+export default {
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$cookies.remove("userID");
+      this.$cookies.remove("authtoken");
+      this.$cookies.remove("redirect");
+      this.$cookies.remove("profID");
+      this.$cookies.remove("FBid");
+      this.$cookies.remove("FBname");
+      this.$cookies.remove("studentID");
+      console.log("LOGGED OUT");
+      // this.logouterrormessage = "You're logged out !";
+      this.$router.push({ path: "/" });
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -191,7 +225,7 @@ li > a:hover {
   line-height: 14px;
   padding-right: 0;
   padding-left: 0;
-  margin: 0 15px;
+  margin: 0 5px;
   text-decoration: none;
   transition: all 300ms ease-out;
 }

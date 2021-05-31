@@ -14,6 +14,7 @@ class UserAuthController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|max:255',
+            'userID' => 'max:10',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'facebookID' => 'max:255'
@@ -78,7 +79,7 @@ class UserAuthController extends Controller
         $success = $user->update([
             'name' => request('name'),
             'email' => request('email'),
-            'password' => request('password')
+            'password' => bcrypt(request('password'))
         ]);
 
         return [
@@ -104,12 +105,22 @@ class UserAuthController extends Controller
     public function showprof($id)
     {
         $prof = User::find($id)->prof;
-        return $prof->toJson();
+        if ($prof == null) {
+            $prof = "EMPTY";
+            return $prof;
+        } else {
+            return $prof->toJson();
+        }
     }
 
     public function showstud($id)
     {
         $stud = User::find($id)->stud;
-        return $stud->toJson();
+        if ($stud == null) {
+            $stud = "EMPTY";
+            return $stud;
+        } else {
+            return $stud->toJson();
+        }
     }
 }

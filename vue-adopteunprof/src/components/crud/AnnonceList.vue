@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th style="width: 50px; text-align: center">#</th>
-            <th>Professeur ID</th>
+            <th>Nom</th>
             <th>Matières</th>
             <th>Contenu</th>
             <th>Tarifs</th>

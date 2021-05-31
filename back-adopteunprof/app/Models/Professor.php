@@ -8,6 +8,7 @@ class Professor extends Model
 {
     protected $fillable = [
         'userID',
+        'professorID',
         'firstname',
         'lastname',
         'avatar',
@@ -32,5 +33,9 @@ class Professor extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'userID');
+    }
+    public function rating()
+    {
+        return $this->hasOne(Rating::class, 'professorID');
     }
 }

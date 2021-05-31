@@ -1,6 +1,6 @@
 <template>
   <div class="myform">
-    <form class="ui form">
+    <form>
       <div class="fields">
         <div class="four wide field">
           <input
@@ -15,8 +15,18 @@
         <div class="four wide field">
           <input
             type="text"
+            name="professorID"
+            placeholder="Professeur ID"
+            @change="handleChange"
+            :value="form.professorID"
+          />
+        </div>
+
+        <div class="four wide field">
+          <input
+            type="text"
             name="firstname"
-            placeholder="First name"
+            placeholder="Prénom"
             @change="handleChange"
             :value="form.firstname"
           />
@@ -26,7 +36,7 @@
           <input
             type="text"
             name="lastname"
-            placeholder="Last name"
+            placeholder="Nom"
             @change="handleChange"
             :value="form.lastname"
           />
@@ -56,7 +66,7 @@
           <input
             type="text"
             name="phone"
-            placeholder="Phone"
+            placeholder="Téléphone"
             @change="handleChange"
             :value="form.phone"
           />
@@ -65,7 +75,7 @@
         <div class="four wide field">
           <input
             type="text"
-            name="matières"
+            name="matieres"
             placeholder="Matières"
             @change="handleChange"
             :value="form.matieres"
@@ -162,7 +172,7 @@
           />
         </div>
 
-        <div class="two wide field">
+        <div class="two wide field" style="margin-top: 30px">
           <button :class="btnClass" @click="onFormSubmit">{{ btnName }}</button>
         </div>
       </div>
@@ -175,7 +185,7 @@ export default {
   name: "Form",
   data() {
     return {
-      btnName: "SAVE",
+      btnName: "ENREGISTRER",
       btnClass: "ui primary button submit-button",
     };
   },
@@ -201,7 +211,7 @@ export default {
         this.$emit("onFormSubmit", this.form);
 
         // change the button to save
-        this.btnName = "SAVED";
+        this.btnName = "ENREGISTRÉ";
         this.btnClass = "ui primary button submit-button";
       }
     },
@@ -217,7 +227,6 @@ export default {
         return false;
       }
 
-      //email
       if (document.getElementsByName("age")[0].value === "") {
         alert("Entrez un âge");
         return false;
@@ -233,18 +242,18 @@ export default {
         return false;
       }
 
-      if (document.getElementsByName("matières")[0].value === "") {
+      if (document.getElementsByName("matieres")[0].value === "") {
         alert("Entrez une matière");
-        return false;
-      }
-
-      if (document.getElementsByName("description")[0].value === "") {
-        alert("Entrez une description");
         return false;
       }
 
       if (document.getElementsByName("information_bancaire")[0].value === "") {
         alert("Entrez vos informations bancaires");
+        return false;
+      }
+
+      if (document.getElementsByName("cours")[0].value === "") {
+        alert("Entrez un cours");
         return false;
       }
 
@@ -254,7 +263,7 @@ export default {
 
   updated() {
     if (this.form.isEdit) {
-      this.btnName = "Update";
+      this.btnName = "Modifié";
       this.btnClass = "ui orange button submit-button";
     }
   },

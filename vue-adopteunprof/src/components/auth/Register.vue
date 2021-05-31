@@ -2,26 +2,32 @@
   <div class="container">
     <div class="register">
       <h2 class="title">Inscription :</h2>
+      <div class="fb">
+        <VFacebookLogin />
+      </div>
+      <p>ou</p>
       <p>Merci de complèter ce formulaire afin de vous créer un compte.</p>
 
-      <input v-model="name" placeholder="IDENTIFIANT" />
-
-      <input v-model="email" placeholder="EMAIL" />
-
-      <input type="password" v-model="pwd" placeholder="MOT DE PASSE" />
-
-      <input type="password" v-model="pwd_confirm" placeholder="CONFIRMATION" />
+      <input v-model="name" placeholder="Identifiant" />
+      <br />
+      <input v-model="email" placeholder="Email" />
+      <br />
+      <input type="password" v-model="pwd" placeholder="Mot de passe" />
+      <br />
+      <input
+        type="password"
+        v-model="pwd_confirm"
+        placeholder="Confirmer le mot de passe"
+      />
       <button type="button" class="btn" id="createbtn" v-on:click="createUser">
-        INSCRIPTION
+        S'inscrire
       </button>
 
-      <VFacebookLogin />
-
       <router-link tag="li" to="/login">
-        <p>Vous avez déjà un compte ?</p>
+        <p class="dejacompte">Vous avez déjà un compte ?</p>
       </router-link>
 
-      <h2>{{ registererrormessage }}</h2>
+      <h2 class="error">{{ registererrormessage }}</h2>
     </div>
   </div>
 </template>
@@ -39,15 +45,11 @@ export default {
 
   data() {
     return {
-      // status: "",
       name: "",
       email: "",
       pwd: "",
       pwd_confirm: "",
       registererrormessage: "",
-      // FB: {},
-      // model: {},
-      // scope: {},
     };
   },
 
@@ -64,13 +66,14 @@ export default {
           console.log("ATTEMPT TO CREATE USER");
           axios
             .post("http://localhost:8000/api/register", {
-              facebookID: "1",
+              facebookID: "NONE",
               name: this.name,
               email: this.email,
               password: this.pwd,
               password_confirmation: this.pwd_confirm,
             })
             .then((response) => {
+              console.log(response);
               this.registererrormessage = "Thank you !";
               this.$router.push({ path: "/login" });
             })
@@ -89,55 +92,84 @@ export default {
 
 <style scoped>
 .container {
-  color: black;
-  text-align: center;
-  font-family: "Racing Sans One", sans-serif !important;
+  font-family: "poppins", sans-serif;
+  max-width: 600px;
+  height: 600px;
 }
 
 input {
-  font-size: 15px;
-  color: black;
-  width: 15%;
-  text-align: center;
-  padding: 12px 20px;
-  margin: 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-family: "Racing Sans One", sans-serif !important;
+  color: #222a35;
+  opacity: 1;
+  height: 47px;
+  border: 1px solid #d8efdb;
+  background-color: transparent;
+  border-radius: 5px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  display: block;
 }
 input::placeholder {
   color: black;
-  font-weight: bold;
+  text-align: left;
 }
 .title {
-  font-size: 40px;
-  font-family: "Racing Sans One", sans-serif !important;
+  letter-spacing: -2px;
+  text-align: center !important;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: "poppins", sans-serif;
+  color: #222a35;
+  margin-top: 70px;
+  margin-bottom: 40px;
 }
 #createbtn {
-  color: black;
-  font-weight: bold;
-  font-family: "Racing Sans One", sans-serif !important;
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
   font-size: 15px;
-  background-color: grey;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms ease-out;
+  margin-top: 20px;
+  float: right;
 }
-#loginbtn {
+#createbtn:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
   color: black;
-  font-weight: bold;
-  background-color: grey;
 }
-#profilebtn {
+p {
   color: black;
-  font-weight: bold;
-  background-color: grey;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 30px;
 }
-#logoutbtn {
+.dejacompte {
   color: black;
-  font-weight: bold;
-  background-color: grey;
+  text-align: right;
+  font-size: 12px;
+  margin-top: 70px;
 }
-a {
-  color: blue;
+.dejacompte:hover {
+  color: #5caf01;
+}
+.fb {
+  text-align: center;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
 }
 </style>

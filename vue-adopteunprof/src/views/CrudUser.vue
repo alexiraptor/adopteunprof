@@ -33,6 +33,7 @@ export default {
         name: "",
         email: "",
         password: "",
+        facebookID: "",
         isEdit: false,
       },
       loader: false,
@@ -91,6 +92,7 @@ export default {
             name: data.name,
             email: data.email,
             password: data.password,
+            facebookID: data.facebookID,
           },
         })
         .then(() => {
@@ -120,6 +122,7 @@ export default {
             userID: data.name,
             firstname: data.email,
             lastname: data.password,
+            facebook: data.facebookID,
           },
         })
         .then(() => {

@@ -24,11 +24,21 @@
 
         <div class="four wide field">
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Password"
             @change="handleChange"
             :value="form.password"
+          />
+        </div>
+
+        <div class="four wide field">
+          <input
+            type="text"
+            name="facebookID"
+            placeholder="Identifiant Facebook"
+            @change="handleChange"
+            :value="form.facebookID"
           />
         </div>
 
@@ -45,7 +55,7 @@ export default {
   name: "FormU",
   data() {
     return {
-      btnName: "SAVE",
+      btnName: "ENREGISTRER",
       btnClass: "ui primary button submit-button",
     };
   },
@@ -71,7 +81,7 @@ export default {
         this.$emit("onFormSubmit", this.form);
 
         // change the button to save
-        this.btnName = "SAVED";
+        this.btnName = "ENREGISTRÉ";
         this.btnClass = "ui primary button submit-button";
       }
     },
@@ -91,13 +101,18 @@ export default {
         return false;
       }
 
+      if (document.getElementsByName("facebookID")[0].value === "") {
+        alert("Entrez un identifiant facebook");
+        return false;
+      }
+
       return true;
     },
   }, //fin methods
 
   updated() {
     if (this.form.isEdit) {
-      this.btnName = "Update";
+      this.btnName = "Modifié";
       this.btnClass = "ui orange button submit-button";
     }
   },

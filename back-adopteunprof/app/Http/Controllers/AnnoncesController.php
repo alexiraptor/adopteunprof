@@ -17,9 +17,11 @@ class AnnoncesController extends Controller
     public function index()
     {
         $annonces = Annonces::all();
-        return response([ 'annonces' => 
-        AnnoncesResource::collection($annonces), 
-        'message' => 'Successful'], 200);
+        return response([
+            'annonces' =>
+            AnnoncesResource::collection($annonces),
+            'message' => 'Successful'
+        ], 200);
     }
 
     /**
@@ -34,23 +36,28 @@ class AnnoncesController extends Controller
 
         $validator = Validator::make($data, [
             'professorID' => 'required|max:50',
+            'professor_name' => 'required|max:50',
             'matieres' => 'required|max:255',
             'content' => 'required|max:1000',
             'tarifs' => 'required|max:50',
-            
-            
+
+
         ]);
 
-        if($validator->fails()){
-            return response(['error' => $validator->errors(), 
-            'Validation Error']);
+        if ($validator->fails()) {
+            return response([
+                'error' => $validator->errors(),
+                'Validation Error'
+            ]);
         }
 
         $annonces = Annonces::create($data);
 
-        return response([ 'annonces' => new 
-        AnnoncesResource($annonces), 
-        'message' => 'Success'], 200);
+        return response([
+            'annonces' => new
+                AnnoncesResource($annonces),
+            'message' => 'Success'
+        ], 200);
     }
 
     /**
@@ -61,9 +68,8 @@ class AnnoncesController extends Controller
      */
     public function show(Annonces $annonce)
     {
-        return response(['annonce' => new 
-        AnnoncesResource($annonce), 'message' => 'Success'], 200);
-
+        return response(['annonce' => new
+            AnnoncesResource($annonce), 'message' => 'Success'], 200);
     }
 
     /**
@@ -77,8 +83,8 @@ class AnnoncesController extends Controller
     {
         $annonce->update($request->all());
 
-        return response([ 'annonces' => new 
-        AnnoncesResource($annonce), 'message' => 'Success'], 200);
+        return response(['annonces' => new
+            AnnoncesResource($annonce), 'message' => 'Success'], 200);
     }
 
     /**
@@ -87,9 +93,9 @@ class AnnoncesController extends Controller
      * @param  \App\Models\Annonces  $professor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Annonces $annonces)
+    public function destroy(Annonces $annonce)
     {
-        $annonces->delete();
+        $annonce->delete();
 
         return response(['message' => 'Annonces deleted']);
     }

@@ -4,14 +4,17 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
   />
   <div id="nav">
-    <div class="ui main container">
-      <Form :form="form" @onFormSubmit="onFormSubmit" />
-
+    <div>
       <ProfessorList
         :professors="professors"
         @onDelete="onDelete"
         @onEdit="onEdit"
       />
+      <br />
+    </div>
+
+    <div class="formP">
+      <Form :form="form" @onFormSubmit="onFormSubmit" />
     </div>
   </div>
 </template>
@@ -35,6 +38,7 @@ export default {
       professors: [],
       form: {
         userID: "",
+        professorID: "",
         firstname: "",
         lastname: "",
         age: "",
@@ -108,6 +112,7 @@ export default {
           },
           data: {
             userID: data.userID,
+            professorID: data.professorID,
             firstname: data.firstname,
             lastname: data.lastname,
             age: data.age,
@@ -150,6 +155,7 @@ export default {
           },
           data: {
             userID: data.userID,
+            professorID: data.professorID,
             firstname: data.firstname,
             lastname: data.lastname,
             age: data.age,
@@ -198,8 +204,8 @@ export default {
 </script>
 
 <style>
-.main.container {
-  margin-top: 60px;
+#nav {
+  margin-top: 40px;
 }
 
 thead tr th {
@@ -208,5 +214,10 @@ thead tr th {
 
 .ui.inverted.dimmer {
   background-color: rgba(225, 255, 255, 0) !important;
+}
+
+.formP {
+  text-align: center;
+  margin-top: 30px;
 }
 </style>

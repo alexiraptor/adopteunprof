@@ -89,7 +89,7 @@
             v-bind:professors="professor"
             v-bind:key="professor"
           />-->
-                    <CardCours
+            <CardCours
             v-for="annonce in annonces"
             v-bind:annonces="annonce"
             v-bind:key="annonce"
@@ -758,6 +758,19 @@ export default {
   color: #222a35;
   margin-top: 70px;
   margin-bottom: 40px;
+}
+.card {
+  border: transparent;
+  margin-top: 60px;
+}
+.card2 {
+  width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 </style>

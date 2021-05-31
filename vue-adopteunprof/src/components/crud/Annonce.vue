@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>{{ annonce.id }}</td>
-    <td>{{ annonce.professorID }}</td>
+    <td>{{ annonce.professor_name }}</td>
     <td>{{ annonce.matieres }}</td>
     <td>{{ annonce.content }}</td>
     <td>{{ annonce.tarifs }}</td>

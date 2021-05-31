@@ -39,7 +39,7 @@ class ProfessorController extends Controller
             'userID' => 'required|max:50',
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            'avatar' => 'max:255',
+            'avatar' => 'max:2000',
             'age' => 'required|max:3',
             'adresse' => 'required|max:150',
             'phone' => 'required|max:10',
@@ -110,5 +110,12 @@ class ProfessorController extends Controller
         $professor->delete();
 
         return response(['message' => 'Professor deleted']);
+    }
+
+    public function showrate($id)
+    {
+        $rate = Professor::find($id)->rating;
+        // dd($rate);
+        return $rate->toJson();
     }
 }

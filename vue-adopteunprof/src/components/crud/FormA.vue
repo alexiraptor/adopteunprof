@@ -5,17 +5,17 @@
         <div class="four wide field">
           <input
             type="text"
-            name="professorID"
-            placeholder="Professor ID"
+            name="professor_name"
+            placeholder="Nom"
             @change="handleChange"
-            :value="form.professorID"
+            :value="form.professor_name"
           />
         </div>
 
         <div class="four wide field">
           <input
             type="text"
-            name="matières"
+            name="matieres"
             placeholder="Matières"
             @change="handleChange"
             :value="form.matieres"
@@ -55,7 +55,7 @@ export default {
   name: "FormA",
   data() {
     return {
-      btnName: "SAVE",
+      btnName: "ENREGISTRER",
       btnClass: "ui primary button submit-button",
     };
   },
@@ -81,17 +81,17 @@ export default {
         this.$emit("onFormSubmit", this.form);
 
         // change the button to save
-        this.btnName = "SAVED";
+        this.btnName = "ENREGISTRÉ";
         this.btnClass = "ui primary button submit-button";
       }
     },
     formValidation() {
-      if (document.getElementsByName("professorID")[0].value === "") {
-        alert("Entrez un identifiant");
+      if (document.getElementsByName("professor_name")[0].value === "") {
+        alert("Entrez un nom");
         return false;
       }
 
-      if (document.getElementsByName("matières")[0].value === "") {
+      if (document.getElementsByName("matieres")[0].value === "") {
         alert("Entrez une matière");
         return false;
       }
@@ -112,7 +112,7 @@ export default {
 
   updated() {
     if (this.form.isEdit) {
-      this.btnName = "Update";
+      this.btnName = "Modifié";
       this.btnClass = "ui orange button submit-button";
     }
   },

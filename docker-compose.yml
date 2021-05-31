@@ -16,11 +16,11 @@ services:
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     #   - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
   server:
-    build: 
+    build:
       context: ./back-adopteunprof
     container_name: server
     ports:
@@ -32,15 +32,14 @@ services:
       - /app/back
     depends_on:
       mysql:
-          condition: service_healthy
+        condition: service_healthy
     links:
       - mysql
     # command: sh -c "php artisan passport:install --force"
-    
-  
+
   client:
     build:
-      context: ./vue-adopteunprof 
+      context: ./vue-adopteunprof
     container_name: client
     ports:
       - "5000:5000"

@@ -6,9 +6,9 @@
       @login="getLoginStatus"
       app-id="745250876152347"
     />
-    <button v-if="scope.logout && model.connected" @click="scope.logout">
+    <!-- <button v-if="scope.logout && model.connected" @click="scope.logout">
       Logout
-    </button>
+    </button> -->
     <!-- <button @click="getLoginStatus">Get Status</button> -->
   </div>
 </template>
@@ -25,12 +25,9 @@ export default {
     FB: {},
     model: {},
     scope: {},
-    // redirect: 0,
     status: "",
   }),
-  created() {
-    // this.Isconnected();
-  },
+  created() {},
   methods: {
     handleSdkInit({ FB, scope }) {
       this.FB = FB;
@@ -38,6 +35,7 @@ export default {
     },
     async getLoginStatus() {
       await FB.getLoginStatus((response) => {
+        console.log(response);
         if (response.status == "connected") this.status = response.status;
       });
       if (this.status == "connected") {
@@ -45,11 +43,9 @@ export default {
           this.$cookies.set("FBid", response.id);
           this.$cookies.set("FBname", response.name);
           this.$cookies.set("FBmail", response.email);
-          console.log(this.$cookies.get("redirect"));
-          if (this.$cookies.get("redirect") == null) {
-            this.$cookies.set("redirect", true);
-            this.$router.push({ path: "/fbregister" });
-          }
+          console.log("C GOOD");
+          FB.api("/me/permissions", "delete", null, () => FB.logout());
+          this.$router.push({ path: "/fbregister" });
         });
       }
     },

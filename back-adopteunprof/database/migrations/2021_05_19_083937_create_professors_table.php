@@ -16,7 +16,8 @@ class CreateProfessorsTable extends Migration
         Schema::create('professors', function (Blueprint $table) {
             $table->id();
             $table->string('userID');
-            $table->string('avatar')->nullable();
+            $table->longText('avatar')->nullable();
+            $table->integer('professorID');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('age');

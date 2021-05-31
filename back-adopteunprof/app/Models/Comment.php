@@ -13,6 +13,12 @@ class Comment extends Model
         'professorID',
         'post_id',
         'comment',
+        'studentID',
         'timestamps',
     ];
+
+    public function showcom()
+    {
+        return $this->belongsTo(Student::class, 'studentID');
+    }
 }
