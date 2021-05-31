@@ -39,11 +39,7 @@ class StudentController extends Controller
             'userID' => 'required|max:50',
             'firstname' => 'required|max:50',
             'lastname' => 'required|max:50',
-            'email' => 'required|max:50',
             'age' => 'required|max:50',
-            // ,
-            // 'job' => 'required|max:50',
-            // 'salary' => 'required|50'
         ]);
 
         if ($validator->fails()) {
@@ -102,7 +98,8 @@ class StudentController extends Controller
         return response(['message' => 'Student deleted']);
     }
 
-    public function showcomment($id) {
+    public function showcomment($id)
+    {
         $comment = Student::find($id)->stud;
         return $comment->toJson();
     }

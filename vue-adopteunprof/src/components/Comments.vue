@@ -12,12 +12,12 @@
               width="40"
               height="40"
             />
-            <h4>abc</h4>
-            <span>{{ comments.created_at }}</span>
+            <h4>Ulysse</h4>
+            <!-- <span>{{ comments.created_at }}</span>
             <br />
             <p>
               {{ comments.comment }}
-            </p>
+            </p> -->
           </div>
           <div class="text-justify darker mt-4 float-right">
             <img

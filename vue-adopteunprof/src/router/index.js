@@ -10,7 +10,7 @@ import CrudStudent from "../views/CrudStudent.vue";
 import FBregister from "../components/auth/FBregister.vue";
 import CrudProfessor from "../views/CrudProfessor.vue";
 import CrudAnnonce from "../views/CrudAnnonce.vue";
-import PersonalSpace from "../components/PersonalSpace.vue";
+// import PersonalSpace from "../components/PersonalSpace.vue";
 import ProfSpace from "../components/ProfSpace.vue";
 import StudSpace from "../components/StudSpace.vue";
 import UserSpace from "../components/UserSpace.vue";
@@ -89,11 +89,11 @@ const routes = [
     name: "CrudAnnonce",
     component: CrudAnnonce,
   },
-  {
-    path: "/personalspace",
-    name: "PersonalSpace",
-    component: PersonalSpace,
-  },
+  // {
+  //   path: "/personalspace",
+  //   name: "PersonalSpace",
+  //   component: PersonalSpace,
+  // },
   {
     path: "/personalspace/prof",
     name: "ProfSpace",

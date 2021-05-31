@@ -1,7 +1,10 @@
 <template>
   <div class="svg">
+    <div class="title">MODIFIER VOTRE AVATAR :</div>
+
     <button v-on:click="RandomAvatar">AVATAR ALEATOIRE</button>
-    <h2 class="title">Choisissez un profil :</h2>
+
+    <body v-html="this.SVG"></body>
 
     <label for="choice1">Eleve :</label>
     <input
@@ -23,8 +26,6 @@
     />
 
     <button v-on:click="ChooseAvatar">ENREGISTRER AVATAR</button>
-
-    <body v-html="this.SVG"></body>
   </div>
 </template>
 
@@ -114,4 +115,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.title {
+  letter-spacing: -2px;
+  text-align: center !important;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: "poppins", sans-serif;
+  color: #222a35;
+  margin-top: 70px;
+  margin-bottom: 40px;
+}
+</style>

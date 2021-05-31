@@ -47,14 +47,16 @@
           </div>
           <div class="col-3 col-lg-1 d-none d-xl-flex justify-content-lg-end">
             <router-link to="/login">
-              <a href="#" class="login_modal_window modal_window">
-                <i class="bi bi-person-fill"></i>Login</a
-              >
+              <a href="#" class="login_modal_window modal_window"> Login</a>
             </router-link>
 
             <router-link to="/register">
+              <a href="#" class="login_modal_window modal_window"> Register</a>
+            </router-link>
+
+            <router-link to="/personalspace/user">
               <a href="#" class="login_modal_window modal_window">
-                <i class="bi bi-person-fill"></i>Register</a
+                Espace Perso</a
               >
             </router-link>
 
@@ -63,7 +65,7 @@
               href="#"
               class="login_modal_window modal_window"
             >
-              <i class="bi bi-person-fill"></i>Logout</a
+              Logout</a
             >
           </div>
         </div>
