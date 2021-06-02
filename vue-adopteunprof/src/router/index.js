@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Register from "../components/auth/Register.vue";
 import Login from "../components/auth/Login.vue";
-import Logout from "../components/auth/Logout.vue";
 import Profile from "../components/auth/Profile.vue";
 import Paypal from "../components/Paypal.vue";
 import CardCours from "../components/CardCours.vue";
@@ -10,7 +9,6 @@ import CrudStudent from "../views/CrudStudent.vue";
 import FBregister from "../components/auth/FBregister.vue";
 import CrudProfessor from "../views/CrudProfessor.vue";
 import CrudAnnonce from "../views/CrudAnnonce.vue";
-// import PersonalSpace from "../components/PersonalSpace.vue";
 import ProfSpace from "../components/ProfSpace.vue";
 import StudSpace from "../components/StudSpace.vue";
 import UserSpace from "../components/UserSpace.vue";
@@ -20,6 +18,7 @@ import AddAnnonces from "../components/AddAnnonces.vue";
 import Chat from "../views/Chat.vue";
 import Comments from '../components/Comments.vue'
 import LeaveComment from '../components/LeaveComment.vue'
+import ProfProfil from '../components/ProfProfil.vue'
 
 const routes = [
   {
@@ -48,11 +47,6 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
-  },
-  {
-    path: "/logout",
-    name: "Logout",
-    component: Logout,
   },
   {
     path: "/profile",
@@ -89,11 +83,6 @@ const routes = [
     name: "CrudAnnonce",
     component: CrudAnnonce,
   },
-  // {
-  //   path: "/personalspace",
-  //   name: "PersonalSpace",
-  //   component: PersonalSpace,
-  // },
   {
     path: "/personalspace/prof",
     name: "ProfSpace",
@@ -138,6 +127,12 @@ const routes = [
     path: "/leavecomment",
     name: "LeaveComment",
     component: LeaveComment
+  },
+  {
+    path: "/profprofil",
+    name: "ProfProfil",
+    component: ProfProfil,
+    props: true
   },
 ];
 

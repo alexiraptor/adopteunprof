@@ -67,7 +67,7 @@ export default {
       // var token = this.$cookies.get("authtoken");
       axios
         .post(
-          "http://localhost:8000/api/annonces",
+          "http://89.234.182.164:8000/api/annonces",
           {
             professorID: this.$cookies.get("profID"),
             professor_name: this.professor_name,
@@ -88,22 +88,35 @@ export default {
           console.log(error);
         });
     },
-    GetMyInfo() {
+    async GetMyInfo() {
       axios
-        .get("http://localhost:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
         })
         .then((data) => {
           console.log(data.data);
-          this.professors = data.data;
+          // this.professors = data.data;
           console.log("ID DE PROF :");
           this.$cookies.set("profID", data.data.id);
           console.log(this.$cookies.get("profID"));
-          this.professor_name =
-            this.professors.firstname + " " + this.professors.lastname;
-          console.log(this.professor_name);
+          let AmIprof = this.$cookies.get("profID");
+
+          console.log("PROF OR NOT :");
+          console.log(AmIprof);
+
+          if (AmIprof == "undefined") {
+            this.$router.push({
+              name: "Profile",
+              params: {
+                profileerrormessage:
+                  "Pour publier une annonce vous devez avoir un compte Professeur.",
+              },
+            });
+          } else {
+            console.log("AUTHENTICATED");
+          }
         })
         .catch((error) => {
           console.log(error);

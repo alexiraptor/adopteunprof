@@ -1,25 +1,27 @@
 <template>
-  <div id="nav">
-    <Navigation v-if="$route.name !== 'NotFound'"/>
-    <Header v-if="$route.name !== 'NotFound'"/>
+  <div>
+    <div id="nav">
+      <Navigation v-if="$route.name !== 'NotFound'" />
+      <Header v-if="$route.name !== 'NotFound'" />
+    </div>
+    <router-view />
+    <Footer v-if="$route.name !== 'NotFound'" />
   </div>
-  <router-view/>
-    <Footer v-if="$route.name !== 'NotFound'"/>
 </template>
 
 <script>
-import Navigation from '@/components/Layouts/Navigation'
-import Header from '@/components/Layouts/Header.vue'
-import Footer from '@/components/Layouts/Footer.vue'
+import Navigation from "@/components/Layouts/Navigation";
+import Header from "@/components/Layouts/Header.vue";
+import Footer from "@/components/Layouts/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
     Navigation,
-    Footer
-  }
-}
+    Footer,
+  },
+};
 </script>
 
 <style scoped>

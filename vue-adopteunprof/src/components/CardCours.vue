@@ -26,9 +26,13 @@
                 <a>Professeur</a>
               </div>
               <div class="button">
-                <button type="button" class="btn">
+                <button
+                  v-on:click="Profil(annonces.professorID)"
+                  type="button"
+                  class="btn"
+                >
                   <!--{{ professors.firstname }} {{ professors.lastname }}-->
-                  {{ annonces.professorID }}
+                  {{ annonces.professor_name }}
                 </button>
               </div>
               <br />
@@ -37,15 +41,20 @@
               </div>
               <div class="button">
                 <button type="button" class="btn">
-                  {{ annonces.matières }}
+                  {{ annonces.matieres }}
                 </button>
               </div>
               <br />
               <div class="bloc-price">
                 <div class="price">{{ annonces.tarifs }} €</div>
-                <button type="button-reserver" class="btn-reserver">
-                  Réserver
-                </button>
+                <router-link :to="`/paypal?id=${annonces.id}`">
+                  <button type="button-reserver" class="btn-reserver">
+                    Réserver
+                  </button></router-link
+                >
+                <!-- <router-link :to="`/paypal?id=${annonces.id}`"
+                  >Réserver</router-link
+                > -->
                 <button type="button-chat" class="btn-chat">
                   <router-link to="/chat"> Discuter </router-link>
                 </button>
@@ -67,7 +76,16 @@ export default {
   },
 
   components: {},
-  methods: {},
+  methods: {
+    Profil(profid) {
+      console.log(profid);
+      //ROUTING AVEC PARAMS
+      this.$router.push({ name: "ProfProfil", params: { profID: profid } });
+    },
+    showannonces(id) {
+      this.$router.push(`/paypal?id=${id}`);
+    },
+  },
 };
 </script>
 

@@ -8,7 +8,7 @@ class Professor extends Model
 {
     protected $fillable = [
         'userID',
-        'professorID',
+        // 'professorID',
         'firstname',
         'lastname',
         'avatar',

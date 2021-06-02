@@ -72,7 +72,7 @@ export default {
       if (this.profiltype == "student") {
         axios
           .patch(
-            "http://localhost:8000/api/student/" +
+            "http://89.234.182.164:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               avatar: this.SVG,
@@ -92,7 +92,7 @@ export default {
       } else if (this.profiltype == "professor") {
         axios
           .patch(
-            "http://localhost:8000/api/professor/" +
+            "http://89.234.182.164:8000/api/professor/" +
               this.$cookies.get("profID"),
             {
               avatar: this.SVG,

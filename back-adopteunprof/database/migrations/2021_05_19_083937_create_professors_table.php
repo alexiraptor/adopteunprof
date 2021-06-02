@@ -17,7 +17,7 @@ class CreateProfessorsTable extends Migration
             $table->id();
             $table->string('userID');
             $table->longText('avatar')->nullable();
-            $table->integer('professorID');
+            // $table->integer('professorID');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('age');

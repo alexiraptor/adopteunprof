@@ -105,10 +105,23 @@ export default {
       hobby: "",
       description: "",
       age: "",
-      profileerrormessage: "",
+      profileerrormessage: this.$route.params.profileerrormessage,
       profiltype: "",
       itstudent: false,
     };
+  },
+  created() {
+    if (this.$cookies.get("authtoken") == undefined) {
+      this.$router.push({
+        name: "Login",
+        params: {
+          loginerrormessage:
+            "Pour vous créer un profil Professeur ou Elève merci de vous connecter au préalable.",
+        },
+      });
+    } else {
+      console.log("AUTHENTICATED");
+    }
   },
   methods: {
     whoisit() {
@@ -158,7 +171,7 @@ export default {
           console.log("ATTEMPT TO CREATE PROFESSOR PROFILE");
           axios
             .post(
-              "http://localhost:8000/api/" + this.profiltype,
+              "http://89.234.182.164:8000/api/" + this.profiltype,
               {
                 userID: userID,
                 firstname: this.firstname,
@@ -193,7 +206,7 @@ export default {
           console.log("ATTEMPT TO CREATE STUDENT PROFILE");
           axios
             .post(
-              "http://localhost:8000/api/" + this.profiltype,
+              "http://89.234.182.164:8000/api/" + this.profiltype,
               {
                 userID: userID,
                 age: this.age,

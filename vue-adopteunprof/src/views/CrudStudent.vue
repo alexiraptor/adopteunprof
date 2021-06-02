@@ -1,16 +1,35 @@
 <template>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-  />
-  <div id="nav">
-    <div>
-      <StudentList :students="students" @onDelete="onDelete" @onEdit="onEdit" />
-      <br />
-    </div>
+  <div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    />
+    <div id="nav">
+      <button class="redirect_button" type="button" v-on:click="Router('user')">
+        CRUD USER
+      </button>
+      <button class="redirect_button" type="button" v-on:click="Router('prof')">
+        CRUD PROFESSEUR
+      </button>
+      <button
+        class="redirect_button"
+        type="button"
+        v-on:click="Router('annonce')"
+      >
+        CRUD ANNONCE
+      </button>
+      <div>
+        <StudentList
+          :students="students"
+          @onDelete="onDelete"
+          @onEdit="onEdit"
+        />
+        <br />
+      </div>
 
-    <div class="formS">
-      <MyForm :form="form" @onFormSubmit="onFormSubmit" />
+      <div class="formS">
+        <MyForm :form="form" @onFormSubmit="onFormSubmit" />
+      </div>
     </div>
   </div>
 </template>
@@ -53,7 +72,28 @@ export default {
       loader: false,
     };
   },
+  created() {
+    if (this.$cookies.get("admintoken") != "admin") {
+      console.log("pas admin");
+      this.$router.push({
+        name: "Login",
+        params: {
+          loginerrormessage:
+            "T'as cru t'étais chez oit mon gars ? Ceci est un espace réservé aux VIP/admins",
+        },
+      });
+    } else {
+      console.log("admin");
+      this.getStudents();
+    }
+  },
   methods: {
+    Router(link) {
+      if (link == "user") this.$router.push({ path: "/crudusers" });
+      else if (link == "stud") this.$router.push({ path: "/crudstudent" });
+      else if (link == "prof") this.$router.push({ path: "/crudprofessor" });
+      else if (link == "annonce") this.$router.push({ path: "/crudannonces" });
+    },
     getStudents() {
       this.loader = true;
       var token = this.$cookies.get("authtoken");
@@ -184,9 +224,6 @@ export default {
         this.createStudent(data);
       }
     },
-  },
-  created() {
-    this.getStudents();
   },
 };
 </script>

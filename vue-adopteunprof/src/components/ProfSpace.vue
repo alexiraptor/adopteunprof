@@ -147,8 +147,19 @@ export default {
   },
 
   created() {
-    this.token = this.$cookies.get("authtoken");
-    this.GetMyInfo();
+    if (this.$cookies.get("authtoken") == undefined) {
+      this.$router.push({
+        name: "Login",
+        params: {
+          loginerrormessage:
+            "Pour accèder au profil personnel veuillez vous connecter ou créer un compte.",
+        },
+      });
+    } else {
+      console.log("AUTHENTICATED");
+      this.token = this.$cookies.get("authtoken");
+      this.GetMyInfo();
+    }
   },
 
   methods: {
@@ -161,7 +172,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("http://localhost:8000/api/login", {
+        .post("http://89.234.182.164:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -189,7 +200,7 @@ export default {
       if (input == "matieres") {
         axios
           .patch(
-            "http://localhost:8000/api/professor/" +
+            "http://89.234.182.164:8000/api/professor/" +
               this.$cookies.get("profID"),
             {
               matieres: this.matieres,
@@ -209,7 +220,7 @@ export default {
       } else if (input == "profdescription") {
         axios
           .patch(
-            "http://localhost:8000/api/professor/" +
+            "http://89.234.182.164:8000/api/professor/" +
               this.$cookies.get("profID"),
             {
               description: this.profdescription,
@@ -229,7 +240,7 @@ export default {
       } else if (input == "information_bancaire") {
         axios
           .patch(
-            "http://localhost:8000/api/professor/" +
+            "http://89.234.182.164:8000/api/professor/" +
               this.$cookies.get("profID"),
             {
               information_bancaire: this.information_bancaire,
@@ -252,7 +263,7 @@ export default {
     GetMyInfo() {
       //PROF :
       axios
-        .get("http://localhost:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -273,7 +284,7 @@ export default {
 
       //USER :
       axios
-        .get("http://localhost:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

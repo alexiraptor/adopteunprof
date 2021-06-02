@@ -14,7 +14,7 @@
         INSCRIPTION
       </button>
 
-      <h2>{{ registererrormessage }}</h2>
+      <h2 class="error">{{ registererrormessage }}</h2>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
       console.log("triggered");
       if (![this.pwd, this.pwd_confirm].every(Boolean)) {
         console.log("NULL");
-        this.registererrormessage = "All fields are required !";
+        this.registererrormessage = "Tous les champs sont requis.";
       } else {
         if (this.pwd == this.pwd_confirm) {
           console.log("PWD MATCHES");
@@ -56,7 +56,7 @@ export default {
           console.log("ATTEMPT TO CREATE USER");
 
           axios
-            .post("http://localhost:8000/api/register", {
+            .post("http://89.234.182.164:8000/api/register", {
               facebookID: this.$cookies.get("userID"),
               name: this.name,
               email: this.email,
@@ -71,10 +71,11 @@ export default {
             })
             .catch((error) => {
               console.log(error);
+              this.registererrormessage =
+                "L'email est déjà utilisé, merci d'en choisir un autre.";
             });
         } else {
-          this.registererrormessage =
-            "Password and confirmation doesn't match !";
+          this.registererrormessage = "Informations incorrectes.";
         }
       }
     },
@@ -134,5 +135,10 @@ input::placeholder {
 }
 a {
   color: blue;
+}
+.error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
 }
 </style>

@@ -46,27 +46,31 @@
             </nav>
           </div>
           <div class="col-3 col-lg-1 d-none d-xl-flex justify-content-lg-end">
-            <router-link to="/login">
-              <a href="#" class="login_modal_window modal_window"> Login</a>
-            </router-link>
-
-            <router-link to="/register">
-              <a href="#" class="login_modal_window modal_window"> Register</a>
-            </router-link>
-
-            <router-link to="/personalspace/user">
-              <a href="#" class="login_modal_window modal_window">
-                Espace Perso</a
+            <div v-if="login">
+              <router-link to="/personalspace/user">
+                <a href="#" class="login_modal_window modal_window">
+                  Espace Perso</a
+                >
+              </router-link>
+              <a
+                v-on:click="logout"
+                href="#"
+                class="login_modal_window modal_window"
               >
-            </router-link>
+                Logout</a
+              >
+            </div>
+            <div v-else>
+              <router-link to="/login">
+                <a href="#" class="login_modal_window modal_window"> Login</a>
+              </router-link>
 
-            <a
-              v-on:click="logout"
-              href="#"
-              class="login_modal_window modal_window"
-            >
-              Logout</a
-            >
+              <router-link to="/register">
+                <a href="#" class="login_modal_window modal_window">
+                  Register</a
+                >
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -75,7 +79,27 @@
 </template>
 
 <script>
+import { defineComponent, computed, watch } from "vue";
 export default {
+  data() {
+    return {
+      login: "",
+    };
+  },
+  created() {
+    this.login = this.$cookies.get("authtoken");
+    console.log("HEY LOGIN");
+    console.log(this.login);
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      console.log(from);
+      if (from.name == "Login" && to.name == "Profile") {
+        this.login = this.$cookies.get("authtoken");
+      }
+    },
+  },
   methods: {
     logout() {
       localStorage.clear();
@@ -86,6 +110,8 @@ export default {
       this.$cookies.remove("FBid");
       this.$cookies.remove("FBname");
       this.$cookies.remove("studentID");
+      this.$cookies.remove("admintoken");
+      this.login = "";
       console.log("LOGGED OUT");
       // this.logouterrormessage = "You're logged out !";
       this.$router.push({ path: "/" });

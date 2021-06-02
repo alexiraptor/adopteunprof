@@ -25,6 +25,9 @@
     "vue-paypal-checkout": "^3.2.0",
     "vue-router": "^4.0.8",
     "vue3-cookies": "^1.0.1",
+    "vue3-datepicker": "^0.2.4",
+    "vue3-timepicker": "^1.0.0-beta.2",
+    "vuejs-timepicker": "^0.1.4",
     "vuex": "^4.0.0-0",
     "weekstart": "^1.1.0"
   },

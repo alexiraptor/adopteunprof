@@ -56,33 +56,42 @@ export default {
   methods: {
     //REGISTER :
     createUser() {
+      console.log(this.name);
       console.log("triggered");
-      if (![this.name, this.email, this.pwd, this.pwd_confirm].every(Boolean)) {
-        console.log("NULL");
-        this.registererrormessage = "All fields are required !";
+      if (this.name == "admin") {
+        this.registererrormessage =
+          "T'as cru t'allais m'avoir comme ça gamin ?'";
       } else {
-        if (this.pwd == this.pwd_confirm) {
-          // console.log("PWD MATCHES");
-          console.log("ATTEMPT TO CREATE USER");
-          axios
-            .post("http://localhost:8000/api/register", {
-              facebookID: "NONE",
-              name: this.name,
-              email: this.email,
-              password: this.pwd,
-              password_confirmation: this.pwd_confirm,
-            })
-            .then((response) => {
-              console.log(response);
-              this.registererrormessage = "Thank you !";
-              this.$router.push({ path: "/login" });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        if (
+          ![this.name, this.email, this.pwd, this.pwd_confirm].every(Boolean)
+        ) {
+          console.log("NULL");
+          this.registererrormessage = "Tous les champs sont requis.";
         } else {
-          this.registererrormessage =
-            "Password and confirmation doesn't match !";
+          if (this.pwd == this.pwd_confirm) {
+            // console.log("PWD MATCHES");
+            console.log("ATTEMPT TO CREATE USER");
+            axios
+              .post("http://89.234.182.164:8000/api/register", {
+                facebookID: "NONE",
+                name: this.name,
+                email: this.email,
+                password: this.pwd,
+                password_confirmation: this.pwd_confirm,
+              })
+              .then((response) => {
+                console.log(response);
+                this.$router.push({ path: "/login" });
+              })
+              .catch((error) => {
+                console.log(error);
+                this.registererrormessage =
+                  "L'email est déjà utilisé, merci d'en choisir un autre.";
+              });
+          } else {
+            this.registererrormessage =
+              "Le mot de passe et sa confirmation ne correspondent pas.";
+          }
         }
       }
     },

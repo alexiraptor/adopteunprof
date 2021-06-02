@@ -136,8 +136,19 @@ export default {
   },
 
   created() {
-    this.token = this.$cookies.get("authtoken");
-    this.GetMyInfo();
+    if (this.$cookies.get("authtoken") == undefined) {
+      this.$router.push({
+        name: "Login",
+        params: {
+          loginerrormessage:
+            "Pour accèder au profil personnel veuillez vous connecter ou créer un compte.",
+        },
+      });
+    } else {
+      console.log("AUTHENTICATED");
+      this.token = this.$cookies.get("authtoken");
+      this.GetMyInfo();
+    }
   },
 
   methods: {
@@ -151,7 +162,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("http://localhost:8000/api/login", {
+        .post("http://89.234.182.164:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -183,7 +194,7 @@ export default {
         this.pwderrormessage = "";
         axios
           .put(
-            "http://localhost:8000/api/users/" + this.$cookies.get("userID"),
+            "http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"),
             {
               password: this.old_pwd,
               name: this.users.name,
@@ -203,7 +214,7 @@ export default {
     UpdateMyName() {
       //NAME :
       axios
-        .put("http://localhost:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.pwd,
           name: this.name,
           email: this.email,
@@ -218,7 +229,7 @@ export default {
     UpdateMyEmail() {
       //EMAIL :
       axios
-        .put("http://localhost:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.pwd,
           name: this.users.name,
           email: this.logemail,
@@ -234,7 +245,7 @@ export default {
     GetMyInfo() {
       //USER :
       axios
-        .get("http://localhost:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
