@@ -8,7 +8,43 @@
             <label for="email">Email</label>
             <input type="text" name="email" id="email" class="form-control" />
           </div>
-          <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+          <div class="rating">
+            <input
+              type="radio"
+              name="rating"
+              v-on:click="note"
+              value="5"
+              id="5"
+            /><label for="5">☆</label>
+            <input
+              type="radio"
+              name="rating"
+              v-on:click="note"
+              value="4"
+              id="4"
+            /><label for="4">☆</label>
+            <input
+              type="radio"
+              name="rating"
+              v-on:click="note"
+              value="3"
+              id="3"
+            /><label for="3">☆</label>
+            <input
+              type="radio"
+              name="rating"
+              v-on:click="note"
+              value="2"
+              id="2"
+            /><label for="2">☆</label>
+            <input
+              type="radio"
+              name="rating"
+              v-on:click="note"
+              value="1"
+              id="1"
+            /><label for="1">☆</label>
+          </div>
           <br />
           <label for="message">Commentaire</label>
           <textarea
@@ -44,7 +80,9 @@
           >
         </div>
         <div class="form-group">
-          <button type="button" id="post" class="btn">Envoyer !</button>
+          <button type="button" v-on:click="Ratings" id="post" class="btn">
+            Envoyer !
+          </button>
         </div>
       </form>
     </div>
@@ -52,19 +90,71 @@
 </template>
 
 <script>
-
+import axios from "axios";
 export default {
   data() {
     return {
-      checked: false
-    }
+      checked: false,
+    };
   },
-}
+  created() {
+    this.GetMyInfo();
+  },
+  methods: {
+    GetMyInfo() {
+      //PROF :
+      axios
+        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        })
+        .then((data) => {
+          console.log(data.data);
+          if (data.data != "EMPTY") {
+            this.prof = true;
+            this.professors = data.data;
+            console.log("ID DE PROF :");
+            this.$cookies.set("profID", data.data.id);
+            console.log(this.$cookies.get("profID"));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    Ratings() {
+      var token = this.$cookies.get("authtoken");
+      const url =
+        "http://127.0.0.1:8000/api/professor/" + this.$cookies.get("profID");
+      console.log(url);
+      const data = {
+        rating: localStorage.note,
+      };
+      console.log(token);
+
+      axios
+        .patch(url, data, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(function(response) {
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    note(a) {
+      localStorage.note = a.target.value;
+    },
+  },
+};
 </script>
 
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap");
 
 .navbar-nav {
   width: 100%;
@@ -206,39 +296,39 @@ form {
 }
 
 .rating {
-    display: inline-flex;
-    margin-top: -10px;
-    flex-direction: row-reverse
+  display: inline-flex;
+  margin-top: -10px;
+  flex-direction: row-reverse;
 }
 
-.rating>input {
-    display: none
+.rating > input {
+  display: none;
 }
 
-.rating>label {
-    position: relative;
-    width: 28px;
-    font-size: 35px;
-    color: #ff0000;
-    cursor: pointer
+.rating > label {
+  position: relative;
+  width: 28px;
+  font-size: 35px;
+  color: #5caf01;
+  cursor: pointer;
 }
 
-.rating>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
 }
 
-.rating>label:hover:before,
-.rating>label:hover~label:before {
-    opacity: 1 !important
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+  opacity: 1 !important;
 }
 
-.rating>input:checked~label:before {
-    opacity: 1
+.rating > input:checked ~ label:before {
+  opacity: 1;
 }
 
-.rating:hover>input:checked~label:before {
-    opacity: 0.4
+.rating:hover > input:checked ~ label:before {
+  opacity: 0.4;
 }
 </style>

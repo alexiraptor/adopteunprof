@@ -8,7 +8,7 @@ class Professor extends Model
 {
     protected $fillable = [
         'userID',
-        // 'professorID',
+        //'professorID',
         'firstname',
         'lastname',
         'avatar',
@@ -20,11 +20,12 @@ class Professor extends Model
         'information_bancaire',
         'annoncesID',
         'cours',
-        'notes',
+        // 'notes',
         'commentaires',
         'historique_cours',
         'historique_paiement',
         'archives_conversation',
+        'rating',
     ];
 
     /**
@@ -37,5 +38,9 @@ class Professor extends Model
     public function rating()
     {
         return $this->hasOne(Rating::class, 'professorID');
+    }
+    public function find($note)
+    {
+        return $note;
     }
 }

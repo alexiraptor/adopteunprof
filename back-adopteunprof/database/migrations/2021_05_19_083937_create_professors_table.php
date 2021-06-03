@@ -17,7 +17,7 @@ class CreateProfessorsTable extends Migration
             $table->id();
             $table->string('userID');
             $table->longText('avatar')->nullable();
-            // $table->integer('professorID');
+            //$table->integer('professorID');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('age');
@@ -28,11 +28,12 @@ class CreateProfessorsTable extends Migration
             $table->string('information_bancaire');
             $table->string('annoncesID')->default('1');
             $table->string('cours')->default('en attente');
-            $table->string('notes')->default('none');
+            // $table->string('notes')->default('none');
             $table->string('commentaires')->default('pas encore de commantaire');
             $table->string('historique_cours')->default('pas de cours actuellement');
             $table->string('historique_paiement')->default('pas de paiement actuellement');
             $table->string('archives_conversation')->default('pas de message encore');
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }

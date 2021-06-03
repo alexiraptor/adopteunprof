@@ -6,10 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group User management
+ *
+ * APIs for managing Users
+ */
 class UserAuthController extends Controller
 {
     protected $namespace = 'App\Http\Controllers\Auth';
 
+    /**
+     * Register a USER.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function register(Request $request)
     {
         $data = $request->validate([
@@ -29,6 +40,13 @@ class UserAuthController extends Controller
         return response(['user' => $user, 'token' => $token]);
     }
 
+    /**
+     * Login a USER.
+     * @bodyParam email string required The email of the user. Example: thomaslebg@grosBG.com
+     * @bodyParam password string required The password of the user. Example: password
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         $data = $request->validate([
@@ -46,11 +64,22 @@ class UserAuthController extends Controller
         return response(['user' => auth()->user(), 'token' => $token]);
     }
 
+    /**
+     * Display a listing of all the USERS.
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return User::all();
     }
 
+    /**
+     * Store a newly created USER in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store()
     {
         request()->validate([
@@ -68,6 +97,13 @@ class UserAuthController extends Controller
         ]);
     }
 
+    /**
+     * Update the specified USER in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function update(User $user)
     {
         request()->validate([
@@ -87,6 +123,12 @@ class UserAuthController extends Controller
         ];
     }
 
+    /**
+     * Remove the specified USER from storage.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(User $user)
     {
         $success = $user->delete();
@@ -96,12 +138,24 @@ class UserAuthController extends Controller
         ];
     }
 
+    /**
+     * Display the specified USER.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
     public function showuser($id)
     {
         $data = User::find($id);
         return $data->toJson();
     }
 
+    /**
+     * Display the specified PROFESSOR account linked to the USER account.
+     *
+     * @param  \App\Models\Professor  $prof
+     * @return \Illuminate\Http\Response
+     */
     public function showprof($id)
     {
         $prof = User::find($id)->prof;
@@ -113,6 +167,12 @@ class UserAuthController extends Controller
         }
     }
 
+    /**
+     * Display the specified STUDENT account linked to the USER account.
+     *
+     * @param  \App\Models\Student  $stud
+     * @return \Illuminate\Http\Response
+     */
     public function showstud($id)
     {
         $stud = User::find($id)->stud;

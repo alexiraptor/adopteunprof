@@ -13,7 +13,7 @@
       <div class="trouvez">
         <a>Trouvez dès maintenant votre cours</a>
       </div>
-      <div class="search">
+      <!-- <div class="search">
         <i class="bi bi-search"></i>
         <input
           type="search"
@@ -36,7 +36,8 @@
       </div>
       <div class="button-search">
         <button type="button" class="btn-success">Rechercher</button>
-      </div>
+      </div> -->
+      <Searchbar @cour="cours" />
       <div class="button-category">
         <button type="button" class="btn-physique">Physique</button>
         <img :src="require('@/assets/icon-physic.png')" class="icon-physic" />
@@ -83,72 +84,87 @@
       <h6 class="pop">Cours populaires</h6>
 
       <div class="card">
-        <div class="card2">
+        <div class="card2" v-if="filteredAnnonces.length > 0">
           <!--<CardCours
             v-for="professor in professors"
             v-bind:professors="professor"
             v-bind:key="professor"
           />-->
-            <CardCours
-            v-for="annonce in annonces"
+          <CardCours
+            v-for="annonce in filteredAnnonces"
             v-bind:annonces="annonce"
             v-bind:key="annonce"
           />
         </div>
+        <div v-else>
+          <p class="msg center">Rien ne correspond à votre recherche</p>
+        </div>
         <Pagination
-      @update:modelPage = 'updatePage'
-      v-bind:modelPage="page"
-      v-bind:modelItemsPerPage="productsPerPage"
-      v-bind:modelNumberOfItems="lengthMatchedProducts"
-      />
+          @update:modelPage="updatePage"
+          v-bind:modelPage="page"
+          v-bind:modelItemsPerPage="productsPerPage"
+          v-bind:modelNumberOfItems="lengthMatchedProducts"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Searchbar from "./Searchbar.vue";
 import CardCours from "@/components/CardCours.vue";
-import Pagination from '@/components/Pagination.vue'
+import Pagination from "@/components/Pagination.vue";
 
 import axios from "axios";
 export default {
   name: "Home",
   components: {
     CardCours,
-    Pagination
+    Pagination,
+    Searchbar,
   },
   props: {
-      sorting: {
+    sorting: {
       type: String,
       required: false,
-      default: ''
-    }, 
+      default: "",
+    },
   },
 
   data() {
     return {
       home: [],
-
       annonces: [],
-              productsPerPage: 12,
-        page: 1
+      filteredAnnonces: [],
+      productsPerPage: 12,
+      page: 1,
     };
   },
-    methods: {
+  methods: {
     updatePage(value) {
       this.page = value;
     },
+    cours(coursMatiere) {
+      if (coursMatiere == "") {
+        this.filteredAnnonces = this.annonces;
+      } else {
+        this.filteredAnnonces = this.annonces.filter((c) => {
+          return c.matieres.toLowerCase() == coursMatiere.toLowerCase();
+        });
+      }
+    },
   },
-    computed: {
+  computed: {
     filters() {
       // generate parameters object from filters passed as props for API request
       return {
-        'region': this.regionId, 
-        'category': this.categoryId, 
-        'min_price': this.minPrice, 
-        'max_price': this.maxPrice, 
-        'search': this.searchTerm, 
-        'sorting': this.sorting };
+        region: this.regionId,
+        category: this.categoryId,
+        min_price: this.minPrice,
+        max_price: this.maxPrice,
+        search: this.searchTerm,
+        sorting: this.sorting,
+      };
     },
 
     loading() {
@@ -164,36 +180,45 @@ export default {
     lengthMatchedProducts() {
       // return the number of products matched with the criteria passed as parameters for pagination
       return this.$store.state.lengthMatchedProducts;
-    }
+    },
   },
-    watch: {
+  watch: {
     filters() {
       // send new GET request to API with new filters every time filters change
-      this.$store.dispatch("getFilteredProducts", { 'filters': this.filters, 'offset': (this.page - 1) * this.productsPerPage, 'limit': this.productsPerPage});
+      this.$store.dispatch("getFilteredProducts", {
+        filters: this.filters,
+        offset: (this.page - 1) * this.productsPerPage,
+        limit: this.productsPerPage,
+      });
       this.$store.dispatch("getMatchedProductsNumber", this.filters);
     },
 
     page() {
       // get corresponding paginated set of matched products when changing page
-      this.$store.dispatch("getFilteredProducts", { 'filters': this.filters, 'offset': (this.page - 1) * this.productsPerPage, 'limit': this.productsPerPage});
+      this.$store.dispatch("getFilteredProducts", {
+        filters: this.filters,
+        offset: (this.page - 1) * this.productsPerPage,
+        limit: this.productsPerPage,
+      });
     },
 
     lengthMatchedProducts() {
       // at every new total of matched products go back to page 1
       this.page = 1;
-    }
+    },
   },
   created() {
     var token = this.$cookies.get("authtoken");
     console.log(token);
     axios
-      .get("http://localhost:8000/api/annonces", {
+      .get("http://89.234.182.164:8000/api/annonces", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
         this.annonces = response.data.annonces;
+        this.filteredAnnonces = this.annonces;
         console.log(response.data);
       });
   },
@@ -272,37 +297,6 @@ export default {
   transform: translate(0px);
   opacity: 1;
   visibility: visible;
-}
-
-.search {
-  position: absolute;
-  margin-top: -420px;
-  margin-left: 100px;
-}
-
-.bi {
-  color: white;
-  position: absolute;
-  margin-left: 13px;
-  margin-top: 12px;
-  font-size: 20px;
-}
-
-.btn-success {
-  background-color: #5caf01;
-  border: 2px solid #5caf01;
-  color: white;
-  padding: 12px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  margin-top: -422px;
-  margin-left: 510px;
-  cursor: pointer;
-  border-radius: 5px;
-  position: absolute;
-  transition: all 300ms ease-out;
 }
 
 .btn-success:hover {
@@ -772,5 +766,15 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
+.msg {
+  display: block;
+  margin-left: 450px;
+  font-family: "poppins", sans-serif;
+  color: black;
+  font-size: 35px;
+  /* border: solid 0.5px; */
+  border-color: lightgray;
+  box-shadow: 5px 5px 5px 5px #5caf01;
+  width: 340px;
+}
 </style>

@@ -7,10 +7,15 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\AnnoncesResource;
 use App\Models\Annonces;
 
+/**
+ * @group Annonce management
+ * @authenticated
+ * APIs for managing Annonces
+ */
 class AnnoncesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the ANNONCE.
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +30,7 @@ class AnnoncesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created ANNONCE in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -61,7 +66,7 @@ class AnnoncesController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified ANNONCE.
      *
      * @param  \App\Models\Annonces  $annonces
      * @return \Illuminate\Http\Response
@@ -73,7 +78,7 @@ class AnnoncesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified ANNONCE in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Annonces  $annonces
@@ -88,7 +93,7 @@ class AnnoncesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified ANNONCE from storage.
      *
      * @param  \App\Models\Annonces  $professor
      * @return \Illuminate\Http\Response

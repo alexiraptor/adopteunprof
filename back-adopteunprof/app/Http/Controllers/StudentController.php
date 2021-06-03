@@ -8,11 +8,16 @@ use App\Http\Resources\StudentResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Student management
+ * @authenticated
+ * APIs for managing Students
+ */
 class StudentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Display a listing of the ETUDIANT.
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -26,7 +31,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created ETUDIANT in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,7 +64,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified ETUDIANT.
      *
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
@@ -71,8 +76,8 @@ class StudentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * Update the specified ETUDIANT in storage.
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
@@ -86,7 +91,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified ETUDIANT from storage.
      *
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
@@ -98,6 +103,12 @@ class StudentController extends Controller
         return response(['message' => 'Student deleted']);
     }
 
+    /**
+     * Display the COMMENTS linked to the STUDENT account.
+     *
+     * @param  \App\Models\Student  $student
+     * @return \Illuminate\Http\Response
+     */
     public function showcomment($id)
     {
         $comment = Student::find($id)->stud;

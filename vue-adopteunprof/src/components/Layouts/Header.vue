@@ -34,7 +34,9 @@
                   id="menu-item-492"
                   class="menu-item menu-item-type-post_type menu-item-object-page menu-item-492"
                 >
-                  <a href="#">Professeurs</a>
+                  <router-link to="/listeprofs">
+                    <a>Professeurs</a>
+                  </router-link>
                 </li>
                 <!-- <li
                   id="menu-item-413"
@@ -48,29 +50,52 @@
           <div class="col-3 col-lg-1 d-none d-xl-flex justify-content-lg-end">
             <div v-if="login">
               <router-link to="/personalspace/user">
-                <a href="#" class="login_modal_window modal_window">
-                  Espace Perso</a
+                <a href="#" class="login_modal_window modal_window"
+                  ><i class="bi bi-person-circle"></i> Espace Perso </a
                 >
               </router-link>
               <a
                 v-on:click="logout"
                 href="#"
                 class="login_modal_window modal_window"
-              >
-                Logout</a
+                ><i class="bi bi-box-arrow-left"></i> Logout</a
               >
             </div>
             <div v-else>
               <router-link to="/login">
-                <a href="#" class="login_modal_window modal_window"> Login</a>
+                <a href="#" class="login_modal_window modal_window"
+                  ><i class="bi bi-person-fill"></i> Login</a
+                >
               </router-link>
 
               <router-link to="/register">
-                <a href="#" class="login_modal_window modal_window">
-                  Register</a
+                <a href="#" class="login_modal_window modal_window"
+                  ><i class="bi bi-box-arrow-in-right"></i> Register</a
                 >
               </router-link>
             </div>
+
+            <!--<router-link to="/login">
+              <a href="#" class="login_modal_window modal_window"> Login</a>
+            </router-link>
+
+            <router-link to="/register">
+              <a href="#" class="login_modal_window modal_window"> Register</a>
+            </router-link>
+
+            <router-link to="/personalspace/user">
+              <a href="#" class="login_modal_window modal_window">
+                Espace Perso</a
+              >
+            </router-link>
+
+            <a
+              v-on:click="logout"
+              href="#"
+              class="login_modal_window modal_window"
+            >
+              Logout</a
+            >-->
           </div>
         </div>
       </div>
@@ -115,6 +140,20 @@ export default {
       console.log("LOGGED OUT");
       // this.logouterrormessage = "You're logged out !";
       this.$router.push({ path: "/" });
+    },
+  },
+  created() {
+    this.login = this.$cookies.get("authtoken");
+    console.log("HEY LOGIN");
+    console.log(this.login);
+  },
+  watch: {
+    $route(to, from) {
+      console.log(to);
+      console.log(from);
+      if (from.name == "Login" && to.name == "Profile") {
+        this.login = this.$cookies.get("authtoken");
+      }
     },
   },
 };
@@ -237,7 +276,7 @@ li > a:hover {
 
 .col-3 {
   position: relative;
-  width: 100%;
+  margin-left: 100px;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
@@ -257,21 +296,11 @@ li > a:hover {
   text-decoration: none;
   transition: all 300ms ease-out;
 }
+.login_modal_window:hover {
+  color: #5caf01;
+}
 
 a {
   text-decoration: none;
-}
-
-.bi-person-fill {
-  margin-right: 0.5rem !important;
-  font-size: inherit;
-  text-rendering: auto;
-  color: #ffffff;
-  transition: all 300ms ease-out;
-}
-
-.login_modal_window:hover,
-.bi-person-fill:hover {
-  color: #5caf01;
 }
 </style>

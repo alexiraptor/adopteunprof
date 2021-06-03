@@ -70,7 +70,7 @@
 
 <script>
 import io from "socket.io-client";
-var socket = io.connect("http://localhost:4000").emit("error");
+var socket = io.connect("ws://89.234.182.164:4000");
 export default {
   name: "Chat",
   data: () => ({

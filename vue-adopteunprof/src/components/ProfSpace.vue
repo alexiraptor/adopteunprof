@@ -39,7 +39,7 @@
       <label for="cours">Cours :</label>
       <div id="cours">{{ professors.cours }}</div>
       <label for="notes">Notes :</label>
-      <div id="notes">{{ professors.notes }}</div>
+      <div id="notes">{{ professors.rating }}</div>
       <label for="commentaires">Commentaires :</label>
       <div id="commentaires">{{ professors.commentaires }}</div>
       <label for="avatar">Avatar :</label>

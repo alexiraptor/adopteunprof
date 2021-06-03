@@ -18,4 +18,4 @@ COPY . .
 # build app for production with minification
 RUN npm run build
 
-CMD serve -s dist && node server.js
+CMD serve -s dist

@@ -35,9 +35,11 @@
           class="form-control"
         />
         <br />
-        <button type="button" class="btn btn-danger" v-on:click="addannonce">
-          Ajouter
-        </button>
+        <router-link to="/listecours">
+          <button type="button" class="btn btn-danger" v-on:click="addannonce">
+            Ajouter
+          </button></router-link
+        >
       </div>
       <!-- </form> -->
     </div>
@@ -83,6 +85,7 @@ export default {
         )
         .then((res) => {
           console.log(res);
+          window.alert("Votre annonce est bien ajouté!");
         })
         .catch((error) => {
           console.log(error);
@@ -97,14 +100,14 @@ export default {
         })
         .then((data) => {
           console.log(data.data);
-          // this.professors = data.data;
+
+          //PROF ID :
           console.log("ID DE PROF :");
           this.$cookies.set("profID", data.data.id);
           console.log(this.$cookies.get("profID"));
           let AmIprof = this.$cookies.get("profID");
-
-          console.log("PROF OR NOT :");
-          console.log(AmIprof);
+          // console.log("PROF OR NOT :");
+          // console.log(AmIprof);
 
           if (AmIprof == "undefined") {
             this.$router.push({
@@ -116,6 +119,9 @@ export default {
             });
           } else {
             console.log("AUTHENTICATED");
+            this.professor_name =
+              data.data.firstname + " " + data.data.lastname;
+            console.log(this.professor_name);
           }
         })
         .catch((error) => {

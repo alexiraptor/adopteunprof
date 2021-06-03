@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      url: "http://localhost:8000/api/professor",
+      url: "http://89.234.182.164:8000/api/professor",
       professors: [],
       form: {
         userID: "",
@@ -158,7 +158,7 @@ export default {
             information_bancaire: data.information_bancaire,
             annoncesID: data.annoncesID,
             cours: data.cours,
-            notes: data.notes,
+            notes: data.rating,
             commentaires: data.commentaires,
             historique_cours: data.historique_cours,
             historique_paiement: data.historique_paiement,
@@ -201,7 +201,7 @@ export default {
             information_bancaire: data.information_bancaire,
             annoncesID: data.annoncesID,
             cours: data.cours,
-            notes: data.notes,
+            notes: data.rating,
             commentaires: data.commentaires,
             historique_cours: data.historique_cours,
             historique_paiement: data.historique_paiement,

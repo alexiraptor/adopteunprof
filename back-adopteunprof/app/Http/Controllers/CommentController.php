@@ -7,11 +7,15 @@ use App\Models\Comment;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\CommentResource;
 
-
+/**
+ * @group Comment management
+ * @authenticated
+ * APIs for managing Comments
+ */
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the COMMENTAIRE.
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,8 +28,9 @@ class CommentController extends Controller
             'message' => 'Successful'
         ], 200);
     }
+
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created COMMENTAIRE in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -57,17 +62,8 @@ class CommentController extends Controller
         ], 200);
     }
 
-    // public function create()
-    // {
-
-    // }
-
-    // public function searchByProfessor(Request $request) {
-
-    // }
-
     /**
-     * Update the specified resource in storage.
+     * Update the specified COMMENTAIRE in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Professor  $professor
@@ -78,11 +74,11 @@ class CommentController extends Controller
         $comment->update($request->all());
 
         return response(['comments' => new
-        commentResource($comment), 'message' => 'Success!'], 200);
+            commentResource($comment), 'message' => 'Success!'], 200);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified COMMENTAIRE.
      *
      * @param  \App\Models\Professor  $professor
      * @return \Illuminate\Http\Response
@@ -93,7 +89,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified COMMENTAIRE from storage.
      *
      * @param  \App\Models\Annonces  $professor
      * @return \Illuminate\Http\Response

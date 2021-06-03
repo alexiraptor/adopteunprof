@@ -14,7 +14,7 @@
     <td>{{ professor.information_bancaire }}</td>
     <td>{{ professor.annoncesID }}</td>
     <td>{{ professor.cours }}</td>
-    <td>{{ professor.notes }}</td>
+    <td>{{ professor.rating }}</td>
     <td>{{ professor.commentaires }}</td>
     <td>{{ professor.historique_cours }}</td>
     <td>{{ professor.historique_paiement }}</td>

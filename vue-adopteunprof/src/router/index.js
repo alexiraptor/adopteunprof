@@ -14,6 +14,7 @@ import StudSpace from "../components/StudSpace.vue";
 import UserSpace from "../components/UserSpace.vue";
 import CrudUser from "../views/CrudUser.vue";
 import ListeCours from "../views/ListeCours.vue";
+import ListeProfs from "../views/ListeProfs.vue";
 import AddAnnonces from "../components/AddAnnonces.vue";
 import Chat from "../views/Chat.vue";
 import Comments from '../components/Comments.vue'
@@ -107,6 +108,11 @@ const routes = [
     path: "/listecours",
     name: "ListeCours",
     component: ListeCours,
+  },
+  {
+    path: "/listeprofs",
+    name: "ListeProfs",
+    component: ListeProfs
   },
   {
     path: "/addannonces",

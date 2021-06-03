@@ -1,25 +1,20 @@
-let app = require("express")();
-let http = require("http").Server(app);
-let io = require("socket.io")(http);
 
-app.get("/chat", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
-http.listen(4000, () => {
-  console.log("Listening on port *: 4000");
-});
+let io = require("socket.io")(4000, {cors:true,
+  origins:["*"]});
 
 io.on("connection", socket => {
   socket.on("error", er => console.log("error: ", er));
 
-  socket.emit("connections", Object.keys(io.sockets.connected).length);
+  socket.emit("connections", (42));
+
+  // socket.emit("connections", (io.sockets.connected));
 
   socket.on("disconnect", () => {
     console.log("A user disconnected");
   });
 
   socket.on("chat-message", data => {
+    console.log(data);
     socket.broadcast.emit("chat-message", data);
   });
 
@@ -32,6 +27,7 @@ io.on("connection", socket => {
   });
 
   socket.on("joined", data => {
+    // console.log(data)
     socket.broadcast.emit("joined", data);
   });
 
