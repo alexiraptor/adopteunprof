@@ -5,110 +5,138 @@
       type="button"
       v-on:click="Router('userspace')"
     >
-      ESPACE USER
+      Espace utilisateur
     </button>
+
     <button
       class="redirect_button"
       type="button"
       v-on:click="Router('profspace')"
     >
-      ESPACE PROFESSEUR
+      Espace professeur
     </button>
 
-    <div class="title">ESPACE PERSONNEL :</div>
-
-    <div class="studlist" v-if="stud">
-      <div class="title">ELEVE :</div>
-      <label for="firstname">Prénom :</label>
-      <div id="firstname">{{ students.firstname }}</div>
-      <label for="lastname">Nom :</label>
-      <div id="lastname">{{ students.lastname }}</div>
-      <label for="age">Age :</label>
-      <div id="age">{{ students.age }}</div>
-      <label for="adresse">Adresse :</label>
-      <div id="adresse">{{ students.adresse }}</div>
-      <label for="phone">Téléphone :</label>
-      <div id="phone">{{ students.phone }}</div>
-      <label for="description">Description :</label>
-      <div id="description">{{ students.description }}</div>
-      <label for="information_bancaire">Informations banquaires :</label>
-      <div id="information_bancaire">{{ students.information_bancaire }}</div>
-      <label for="cours">Cours :</label>
-      <div id="cours">{{ students.cours }}</div>
-      <label for="hobby">Hobby :</label>
-      <div id="hobby">{{ students.hobby }}</div>
-      <label for="commentaires">Commentaires :</label>
-      <div id="commentaires">{{ students.commentaires }}</div>
-      <label for="avatar">Avatar :</label>
-      <body id="avatar" v-html="students.avatar"></body>
-
-      <div class="title">MODIFIER VOS INFOS PERSOS :</div>
-
-      <div class="password">
-        <input type="password" v-model="pwd" placeholder="MOT DE PASSE" />
-
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="loginbtn"
-          v-on:click="Loginperso"
-        >
-          LOGGED IN
-        </button>
-
-        <h2 class="error">{{ loginerrormessage }}</h2>
+    <div class="title">Espace étudiant</div>
+    <div class="espaceetu">
+      <div class="gauche">
+        <i class="bi bi-person-circle"></i>
+        <div class="username">
+          {{ students.firstname }} {{ students.lastname }}
+        </div>
       </div>
-    </div>
+      <div class="droite">
+        <div class="donnees">Vos données :</div>
+        <div class="studlist" v-if="stud">
+          <label for="firstname" class="label">Prénom :</label>
+          <div id="firstname">{{ students.firstname }}</div>
+          <br />
+          <label for="lastname" class="label">Nom :</label>
+          <div id="lastname">{{ students.lastname }}</div>
+          <br />
+          <label for="age" class="label">Age :</label>
+          <div id="age">{{ students.age }}</div>
+          <br />
+          <label for="adresse" class="label">Adresse :</label>
+          <div id="adresse">{{ students.adresse }}</div>
+          <br />
+          <label for="phone" class="label">Téléphone :</label>
+          <div id="phone">{{ students.phone }}</div>
+          <br />
+          <label for="description" class="label">Description :</label>
+          <div id="description">{{ students.description }}</div>
+          <br />
+          <label for="information_bancaire" class="label"
+            >Informations banquaires :</label
+          >
+          <div id="information_bancaire">
+            {{ students.information_bancaire }}
+          </div>
+          <br />
+          <label for="cours" class="label">Cours :</label>
+          <div id="cours">{{ students.cours }}</div>
+          <br />
+          <label for="hobby" class="label">Hobby :</label>
+          <div id="hobby">{{ students.hobby }}</div>
+          <br />
+          <label for="commentaires" class="label">Commentaires :</label>
+          <div id="commentaires">{{ students.commentaires }}</div>
+          <br />
+          <label for="avatar" class="label">Avatar :</label>
+          <body id="avatar" v-html="students.avatar"></body>
 
-    <div class="studlist" v-if="!stud">
-      <button
-        class="redirect_button"
-        type="button"
-        v-on:click="Router('createprofile')"
-      >
-        CRÉER UN PROFIL
-      </button>
-    </div>
+          <div class="modif">Modifier vos informations :</div>
+          <div class="modifinfocon">
+            Pour modifier vos informations veuillez vous connecter
+          </div>
+          <div class="password">
+            <input type="password" v-model="pwd" placeholder="Mot de passe" />
 
-    <div v-if="loggedin">
-      <div class="modify">
-        <div class="title">ETUDIANT :</div>
-        <div class="title">MODIFIER VOTRE HOBBY :</div>
-        <input v-model="hobby" placeholder="NOUVEAU HOBBY" />
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="loginbtn"
+              v-on:click="Loginperso"
+            >
+              Se connecter
+            </button>
 
-        <button
-          type="button"
-          class="btn btn-primary"
-          id="loginbtn"
-          v-on:click="whichfunction('hobby')"
-        >
-          HOBBY
-        </button>
+            <h2 class="error">{{ loginerrormessage }}</h2>
+          </div>
+        </div>
+
+        <div class="studlist" v-if="!stud">
+          <div class="ifnotstud">
+            Vous n'avez pas encore créé de profil étudiant
+          </div>
+          <button
+            class="redirect_button"
+            type="button"
+            v-on:click="Router('createprofile')"
+          >
+            Créer un profil
+          </button>
+        </div>
+
+        <div v-if="loggedin">
+          <div class="modify">
+            <div class="donnees2">Modifier votre hobby :</div>
+            <input v-model="hobby" placeholder="Nouveau Hobby" />
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="loginbtn"
+              v-on:click="whichfunction('hobby')"
+            >
+              Actualiser
+            </button>
+          </div>
+
+          <div class="donnees2">Modifier votre description :</div>
+          <input v-model="description" placeholder="Nouvelle description" />
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="loginbtn"
+            v-on:click="whichfunction('description')"
+          >
+            Actualiser
+          </button>
+
+          <div class="donnees2">Modifier vos informations bancaires :</div>
+          <input v-model="banque" placeholder="Informations bancaires" />
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="loginbtn"
+            v-on:click="whichfunction('banque')"
+          >
+            Actualiser
+          </button>
+        </div>
       </div>
-
-      <div class="title">MODIFIER VOTRE DESCRIPTION :</div>
-      <input v-model="description" placeholder="NOUVELLE DESCRIPTION" />
-
-      <button
-        type="button"
-        class="btn btn-primary"
-        id="loginbtn"
-        v-on:click="whichfunction('description')"
-      >
-        DESCRIPTION
-      </button>
-
-      <div class="title">MODIFIER VOS INFOS BANQUAIRES :</div>
-      <input v-model="banque" placeholder="INFORMATIONS BANQUAIRES" />
-
-      <button
-        type="button"
-        class="btn btn-primary"
-        id="loginbtn"
-        v-on:click="whichfunction('banque')"
-      >
-        BANQUE
-      </button>
     </div>
   </div>
 </template>
@@ -171,7 +199,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("https://89.234.182.164:8000/api/login", {
+        .post("http://89.234.182.164:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -181,12 +209,12 @@ export default {
             console.log("C GOOD");
             this.loggedin = true;
           } else {
-            this.loginerrormessage = "MAUVAIS MOT DE PASSE.";
+            this.loginerrormessage = "Mot de passe incorrect";
           }
         })
         .catch((error) => {
           console.log(error);
-          this.loginerrormessage = "MAUVAIS MOT DE PASSE.";
+          this.loginerrormessage = "Mot de passe incorrect";
         });
     },
     whichfunction(input = "") {
@@ -199,7 +227,7 @@ export default {
       if (input == "hobby") {
         axios
           .patch(
-            "https://89.234.182.164:8000/api/student/" +
+            "http://89.234.182.164:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               hobby: this.hobby,
@@ -219,7 +247,7 @@ export default {
       } else if (input == "description") {
         axios
           .patch(
-            "https://89.234.182.164:8000/api/student/" +
+            "http://89.234.182.164:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               description: this.description,
@@ -239,7 +267,7 @@ export default {
       } else if (input == "banque") {
         axios
           .patch(
-            "https://89.234.182.164:8000/api/student/" +
+            "http://89.234.182.164:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               information_bancaire: this.banque,
@@ -262,7 +290,7 @@ export default {
     GetMyInfo() {
       //STUDENT :
       axios
-        .get("https://89.234.182.164:8000/api/stud/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/stud/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -283,7 +311,7 @@ export default {
 
       //USER :
       axios
-        .get("https://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -303,29 +331,28 @@ export default {
 <style scoped>
 .container {
   font-family: "poppins", sans-serif;
-  max-width: 600px;
-  /* height: 600px; */
+  width: 900px;
+  height: 650px;
   text-align: center;
+  margin-bottom: 1000px;
 }
-
-input {
-  color: #222a35;
-  opacity: 1;
-  height: 47px;
-  border: 1px solid #d8efdb;
-  background-color: transparent;
+.redirect_button {
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
   border-radius: 5px;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 80%;
+  transition: all 300ms ease-out;
+  margin-top: 50px;
+  margin-left: 10px;
 }
-input::placeholder {
+.redirect_button:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
   color: black;
-  text-align: center;
 }
 .title {
   letter-spacing: -2px;
@@ -339,17 +366,156 @@ input::placeholder {
   margin-top: 70px;
   margin-bottom: 40px;
 }
-label {
-  font-size: 15px !important;
-  font-weight: lighter;
+.espaceetu {
+  padding: 45px 50px 47px;
+  border: 1px solid #d8efdb;
+  border-radius: 5px !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.gauche {
+  width: 300px;
+}
+.bi {
+  font-size: 250px;
+  color: rgb(238, 238, 238);
+}
+.username {
+  font-size: 36px;
+  color: #222a35;
+  text-align: center !important;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+}
+.droite {
+  padding-left: 40px;
+  width: 500px;
+  text-align: left;
+}
+.donnees {
+  font-size: 26px;
+  color: #222a35;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+  margin-bottom: 15px;
+}
+.donnees2 {
+  font-size: 26px;
+  color: #222a35;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.label {
+  color: #768292;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+#firstname,
+#lastname,
+#age,
+#adresse,
+#phone,
+#description,
+#information_bancaire,
+#cours,
+#hobby,
+#commentaires,
+#avatar {
+  color: #2a323c;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  display: inline-block;
+  margin-left: 10px;
+}
+.modif {
+  font-size: 26px;
+  color: #222a35;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+.modifinfocon {
+  color: #768292;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+input {
+  color: #222a35;
+  opacity: 1;
+  height: 47px;
+  border: 1px solid #d8efdb;
+  background-color: transparent;
+  border-radius: 5px;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  display: block;
+  margin-bottom: 15px;
+}
+input::placeholder {
+  color: black;
+  text-align: left;
+}
+#loginbtn {
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms ease-out;
+}
+#loginbtn:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
+  color: black;
+}
+.error {
+  color: red;
+  font-size: 14px;
   margin-top: 10px;
 }
-.studlist {
-  font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.redirect_button {
-  margin-top: 20px;
+.ifnotstud {
+  color: #2a323c;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  margin-left: 10px;
+  margin-top: 50px;
 }
 </style>

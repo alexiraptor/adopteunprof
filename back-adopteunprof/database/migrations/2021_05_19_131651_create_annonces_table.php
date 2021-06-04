@@ -19,7 +19,7 @@ class CreateAnnoncesTable extends Migration
             $table->string('professor_name');
             $table->string('matieres');
             $table->string('content');
-            $table->string('tarifs');
+            $table->integer('tarifs');
             $table->timestamps();
         });
     }

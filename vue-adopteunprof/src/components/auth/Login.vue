@@ -48,7 +48,7 @@ export default {
         console.log("ATTEMPT TO LOGIN USER");
 
         axios
-          .post("https://89.234.182.164:8000/api/login", {
+          .post("http://89.234.182.164:8000/api/login", {
             email: this.email,
             password: this.pwd,
           })

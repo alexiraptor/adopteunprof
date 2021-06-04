@@ -104,7 +104,7 @@ export default {
     GetMyInfo() {
       //PROF :
       axios
-        .get("https://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -126,7 +126,7 @@ export default {
     Ratings() {
       var token = this.$cookies.get("authtoken");
       const url =
-        "https://89.234.182.164:8000/api/professor/" + this.$cookies.get("profID");
+        "http://89.234.182.164:8000/api/professor/" + this.$cookies.get("profID");
       console.log(url);
       const data = {
         rating: localStorage.note,

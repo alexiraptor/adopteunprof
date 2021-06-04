@@ -1,37 +1,66 @@
 <template>
-  <Map />
   <div class="container">
     <div class="titre">
-      <h1>Liste des Professeurs</h1>
+      <h6 class="listeprof">Liste des professeurs</h6>
       <br />
     </div>
-    <div v-for="professor in professors" :key="professor.id">
-      <ul class="prof-list">
-        <li class="puce-list">
-          Nom : {{ professor.firstname }} {{ professor.lastname }} /
-          Localisation : {{ professor.adresse }} / Matières enseignées :
-          {{ professor.matieres }} / Description : {{ professor.description }}
-          <button class="prof-button" v-on:click="SeeMore(professor.id)">
-            VOIR PLUS
-          </button>
-        </li>
-      </ul>
-    </div>
+
+    <table class="tableau">
+      <thead>
+        <tr>
+          <th class="colonne-nom">Nom</th>
+          <th class="colonne-loc">Localisation</th>
+          <th class="colonne-mat">Matière ensignée</th>
+          <th class="colonne-des">Description</th>
+          <th class="colonne-det">Détails</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="professor in professors" :key="professor.id">
+          <td class="nom">
+            <div>{{ professor.firstname }} {{ professor.lastname }}</div>
+          </td>
+          <td class="text-center-prodnam">
+            <div>{{ professor.adresse }}</div>
+          </td>
+          <td class="text-center-catnam">
+            <div>{{ professor.matieres }}</div>
+          </td>
+          <td class="text-center-qttprod">
+            <div>{{ professor.description }}</div>
+          </td>
+          <td class="text-center-suppr">
+            <button class="prof-button" v-on:click="SeeMore(professor.id)">
+              VOIR PLUS
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+      <Map />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ProfessorList from "../components/crud/ProfessorList.vue";
+import Map from "../components/Map.vue";
+import Loader from "../components/crud/Loader.vue";
 
 export default {
   name: "Listprofs",
   props: {
     professors: Object,
   },
+    components: {
+    ProfessorList,
+    Loader,
+    Map,
+  },
 
   data() {
     return {
-      url: "https://89.234.182.164:8000/api/professor",
+      url: "http://89.234.182.164:8000/api/professor",
       professors: [],
     };
   },
@@ -84,22 +113,18 @@ export default {
 };
 </script>
 <style scoped>
-.titre {
-  text-align: center;
+.listeprof {
+  letter-spacing: -2px;
+  text-align: center !important;
+  font-size: 54px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: "poppins", sans-serif;
+  color: #222a35;
+  margin-top: 70px;
+  margin-bottom: 40px;
 }
-
-.prof-list {
-  text-align: center;
-}
-
-.container {
-  margin-top: 20px;
-}
-
-.prof-list {
-  font-size: 16px;
-}
-
 .prof-button {
   padding: 5px 6px;
   margin: 0 4px 4px 0;
@@ -118,5 +143,20 @@ export default {
   background-color: #5caf01;
   border: 2px solid #5caf01;
   color: white;
+}
+.tableau {
+  margin: auto;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+  border-spacing: 0;
+}
+thead tr th {
+  background-color: #5caf01 !important;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 </style>

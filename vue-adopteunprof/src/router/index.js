@@ -20,6 +20,7 @@ import Chat from "../views/Chat.vue";
 import Comments from '../components/Comments.vue'
 import LeaveComment from '../components/LeaveComment.vue'
 import ProfProfil from '../components/ProfProfil.vue'
+import Conditions from '../views/Conditions.vue'
 
 const routes = [
   {
@@ -39,7 +40,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
-  {
+  
+    {
+      path: "/conditions",
+      name: "Conditions",
+      component: Conditions,
+    },
+    {
     path: "/register",
     name: "Register",
     component: Register,
@@ -100,6 +107,11 @@ const routes = [
     component: UserSpace,
   },
   {
+    path: "/personalspace/prof/addannonces",
+    name: "AddAnnonces",
+    component: AddAnnonces,
+  },
+  {
     path: "/crudusers",
     name: "CrudUser",
     component: CrudUser,
@@ -113,11 +125,6 @@ const routes = [
     path: "/listeprofs",
     name: "ListeProfs",
     component: ListeProfs
-  },
-  {
-    path: "/addannonces",
-    name: "Addannonce",
-    component: AddAnnonces,
   },
   {
     path: "/chat",

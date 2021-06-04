@@ -56,7 +56,7 @@ export default {
           console.log("ATTEMPT TO CREATE USER");
 
           axios
-            .post("https://89.234.182.164:8000/api/register", {
+            .post("http://89.234.182.164:8000/api/register", {
               facebookID: this.$cookies.get("userID"),
               name: this.name,
               email: this.email,

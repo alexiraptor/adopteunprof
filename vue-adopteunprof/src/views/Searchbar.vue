@@ -84,4 +84,8 @@ export default {
   position: absolute;
   transition: all 300ms ease-out;
 }
+.btn-success:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
+}
 </style>

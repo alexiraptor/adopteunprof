@@ -7,6 +7,7 @@
             :src="require('@/assets/logo-adopte-un-prof.png')"
             class="logo"
           />
+
           <div class="col-xl-7 d-xl-block">
             <nav class="top-nav justify-content-start" style="">
               <ul
@@ -51,8 +52,8 @@
             <div v-if="login">
               <router-link to="/personalspace/user">
                 <a href="#" class="login_modal_window modal_window"
-                  ><i class="bi bi-person-circle"></i> Espace Perso </a
-                >
+                  ><i class="bi bi-person-circle"></i> Espace Perso
+                </a>
               </router-link>
               <a
                 v-on:click="logout"

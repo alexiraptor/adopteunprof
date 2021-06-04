@@ -26,7 +26,7 @@
       </div>
       <div class="calendar">Choississez votre date:<Calendar /></div>
       <div id="paypal-button"></div>
-      <paypal-checkout />
+      <paypal-checkout class="paypal" />
     </div>
   </div>
 </template>
@@ -92,7 +92,7 @@ export default {
       //let id = this.$route.query.id;
 
       axios
-        .get(`https://89.234.182.164:8000/api/annonces/${this.$route.query.id}`, {
+        .get(`http://89.234.182.164:8000/api/annonces/${this.$route.query.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -245,11 +245,11 @@ export default {
   text-align: left;
   display: inline-block;
   margin-left: 50px;
-  margin-top: -50px;
   margin-bottom: 20px;
 }
 #paypal-button {
   text-align: center;
+  margin-top: 160px;
 }
 .calendar {
   margin-bottom: 50px;

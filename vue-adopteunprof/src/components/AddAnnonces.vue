@@ -14,7 +14,7 @@
         <input
           type="text"
           v-model="matieres"
-          placeholder="matières"
+          placeholder="Matière"
           required="True"
           class="form-control"
         />
@@ -22,7 +22,7 @@
         <input
           type="text"
           v-model="content"
-          placeholder="content"
+          placeholder="Description"
           required
           class="form-control"
         />
@@ -30,7 +30,7 @@
         <input
           type="text"
           v-model="tarifs"
-          placeholder="tarifs"
+          placeholder="Tarif"
           required
           class="form-control"
         />
@@ -69,7 +69,7 @@ export default {
       // var token = this.$cookies.get("authtoken");
       axios
         .post(
-          "https://89.234.182.164:8000/api/annonces",
+          "http://89.234.182.164:8000/api/annonces",
           {
             professorID: this.$cookies.get("profID"),
             professor_name: this.professor_name,
@@ -93,7 +93,7 @@ export default {
     },
     async GetMyInfo() {
       axios
-        .get("https://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

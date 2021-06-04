@@ -107,7 +107,7 @@ export default {
 
       // prendre le commentaire
       axios
-        .get("https://89.234.182.164:8000/api/comments/1", {
+        .get("http://89.234.182.164:8000/api/comments/1", {
           headers: {
             Authorization: `Basic ${token}`,
           },

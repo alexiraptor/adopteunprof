@@ -17,7 +17,10 @@ class UserAuthController extends Controller
 
     /**
      * Register a USER.
-     *
+     * @bodyParam name string required The name of the user. Example: Thomas Le Bg
+     * @bodyParam facebookID string required The facebookID of the user. Example: 1
+     * @bodyParam email string required The email of the user. Example: thomaslebg@grosBG.com
+     * @bodyParam password string required The password of the user. Example: password
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +28,6 @@ class UserAuthController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|max:255',
-            'userID' => 'max:10',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed',
             'facebookID' => 'max:255'
@@ -83,9 +85,9 @@ class UserAuthController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => 'max:255',
+            'email' => 'max:255',
+            'password' => 'max:255',
             'facebookID' => 'max:255',
         ]);
 
@@ -107,9 +109,9 @@ class UserAuthController extends Controller
     public function update(User $user)
     {
         request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'name' => 'max:255',
+            'email' => 'max:255',
+            'password' => 'max:255',
         ]);
 
         $success = $user->update([

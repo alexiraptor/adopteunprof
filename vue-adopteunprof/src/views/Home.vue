@@ -37,17 +37,31 @@
       <div class="button-search">
         <button type="button" class="btn-success">Rechercher</button>
       </div> -->
-      <Searchbar @cour="cours" />
+      <Searchbar @cour="cour" />
       <div class="button-category">
-        <button type="button" class="btn-physique">Physique</button>
+        <button
+          type="button"
+          v-on:click="cours('physique')"
+          class="btn-physique"
+        >
+          Physique
+        </button>
         <img :src="require('@/assets/icon-physic.png')" class="icon-physic" />
-        <button type="button" class="btn-math">Math</button>
+        <button type="button" v-on:click="cours('math')" class="btn-math">
+          Math
+        </button>
         <img :src="require('@/assets/icon-math.png')" class="icon-math" />
-        <button type="button" class="btn-art">Dessin</button>
+        <button type="button" v-on:click="cours('dessin')" class="btn-art">
+          Dessin
+        </button>
         <img :src="require('@/assets/icon-art.png')" class="icon-art" />
-        <button type="button" class="btn-music">Musique</button>
+        <button type="button" v-on:click="cours('musique')" class="btn-music">
+          Musique
+        </button>
         <img :src="require('@/assets/icon-music.png')" class="icon-music" />
-        <button type="button" class="btn-it">Informatique</button>
+        <button type="button" v-on:click="cours('informatique')" class="btn-it">
+          Informatique
+        </button>
         <img
           :src="require('@/assets/icon-computer.png')"
           class="icon-computer"
@@ -72,16 +86,16 @@
     <div class="bande-verte">
       <img :src="require('@/assets/icon-teacher.png')" class="icon-teacher" />
       <a class="profs">1320 professeurs</a><br />
-      <a class="lorem1">Lorem ipsum dolor si amet</a>
+      <!-- <a class="lorem1">Lorem ipsum dolor si amet</a> -->
       <img :src="require('@/assets/icon-cours.png')" class="icon-cours" />
       <a class="cours">8237 cours disponibles</a><br />
-      <a class="lorem2">Lorem ipsum dolor si amet</a>
+      <!-- <a class="lorem2">Lorem ipsum dolor si amet</a> -->
       <img :src="require('@/assets/icon-pays.png')" class="icon-pays" />
-      <a class="pays">5 langues différentes</a><br />
-      <a class="lorem3">Lorem ipsum dolor si amet</a>
+      <a class="pays">Site dédié à la francophonie</a><br />
+      <!-- <a class="lorem3">Lorem ipsum dolor si amet</a> -->
     </div>
     <div class="cours-populaires">
-      <h6 class="pop">Cours populaires</h6>
+      <h6 class="pop">Cours récemment ajoutés</h6>
 
       <div class="card">
         <div class="card2" v-if="filteredAnnonces.length > 0">
@@ -96,8 +110,11 @@
             v-bind:key="annonce"
           />
         </div>
-        <div v-else>
+        <div v-else-if="$cookies == ''">
           <p class="msg center">Rien ne correspond à votre recherche</p>
+        </div>
+        <div v-else>
+          <p class="msg center">Merci de vous connecter</p>
         </div>
         <Pagination
           @update:modelPage="updatePage"
@@ -145,6 +162,7 @@ export default {
       this.page = value;
     },
     cours(coursMatiere) {
+      console.log(coursMatiere);
       if (coursMatiere == "") {
         this.filteredAnnonces = this.annonces;
       } else {
@@ -211,7 +229,7 @@ export default {
     var token = this.$cookies.get("authtoken");
     console.log(token);
     axios
-      .get("https://89.234.182.164:8000/api/annonces", {
+      .get("http://89.234.182.164:8000/api/annonces", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -609,7 +627,7 @@ export default {
 
 .profs {
   margin-left: 200px;
-  margin-top: 32px;
+  margin-top: 45px;
   position: absolute;
   z-index: 6;
   font-family: "poppins", sans-serif;
@@ -656,7 +674,7 @@ export default {
 
 .cours {
   margin-left: 610px;
-  margin-top: 12px;
+  margin-top: 30px;
   position: absolute;
   z-index: 6;
   font-family: "poppins", sans-serif;
@@ -703,7 +721,7 @@ export default {
 
 .pays {
   margin-left: 1020px;
-  margin-top: -4px;
+  margin-top: 10px;
   position: absolute;
   z-index: 6;
   font-family: "poppins", sans-serif;
@@ -768,13 +786,15 @@ export default {
 }
 .msg {
   display: block;
-  margin-left: 450px;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  text-align: center;
   font-family: "poppins", sans-serif;
-  color: black;
-  font-size: 35px;
-  /* border: solid 0.5px; */
-  border-color: lightgray;
-  box-shadow: 5px 5px 5px 5px #5caf01;
-  width: 340px;
+  font-size: 30px;
+  background-color: #5caf01;
+  color: white;
+  border-radius: 5px;
 }
 </style>

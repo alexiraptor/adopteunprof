@@ -14,8 +14,6 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-
-//     Route::get('/product/{id}', [ProductsController::class, 'show']);
-// });
+Route::get('/', function () {
+    return view('welcome');
+});

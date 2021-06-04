@@ -50,7 +50,7 @@ export default {
   },
   data() {
     return {
-      url: "https://89.234.182.164:8000/api/annonces",
+      url: "http://89.234.182.164:8000/api/annonces",
       annonces: [],
       form: {
         professor_name: "",

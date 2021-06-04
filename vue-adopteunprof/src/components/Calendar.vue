@@ -1,6 +1,7 @@
 <template>
   <div class="datepicker">
     <datepicker
+      class="date"
       :format="customDate"
       v-model="time"
       :inline="true"
@@ -36,5 +37,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

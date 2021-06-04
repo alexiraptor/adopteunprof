@@ -1,30 +1,53 @@
 <template>
   <div class="container">
-    <div class="title">PROFESSEUR :</div>
-    <label for="firstname">Prénom :</label>
-    <div id="firstname">{{ professors.firstname }}</div>
-    <label for="lastname">Nom :</label>
-    <div id="lastname">{{ professors.lastname }}</div>
-    <label for="age">Age :</label>
-    <div id="age">{{ professors.age }}</div>
-    <label for="adresse">Adresse :</label>
-    <div id="adresse">{{ professors.adresse }}</div>
-    <label for="phone">Téléphone :</label>
-    <div id="phone">{{ professors.phone }}</div>
-    <label for="matieres">Matieres :</label>
-    <div id="matieres">{{ professors.matieres }}</div>
-    <label for="description">Description :</label>
-    <div id="description">{{ professors.description }}</div>
-    <label for="information_bancaire">Informations banquaires :</label>
-    <div id="information_bancaire">{{ professors.information_bancaire }}</div>
-    <label for="cours">Cours :</label>
-    <div id="cours">{{ professors.cours }}</div>
-    <label for="notes">Notes :</label>
-    <div id="notes">{{ professors.rating }}</div>
-    <label for="commentaires">Commentaires :</label>
-    <div id="commentaires">{{ professors.commentaires }}</div>
-    <label for="avatar">Avatar :</label>
-    <body id="avatar" v-html="professors.avatar"></body>
+    <div class="title">Détail professeur :</div>
+    <div class="detailprof">
+      <div class="gauche">
+        <i class="bi bi-person-circle"></i>
+        <body id="avatar" v-html="professors.avatar"></body>
+        <div class="username">
+          {{ professors.firstname }} {{ professors.lastname }}
+        </div>
+      </div>
+      <div class="droite">
+        <label for="age" class="label">Age :</label>
+        <div id="age">{{ professors.age }}</div>
+        <br />
+        <label for="adresse" class="label">Adresse :</label>
+        <div id="adresse">{{ professors.adresse }}</div>
+        <br />
+        <label for="phone" class="label">Téléphone :</label>
+        <div id="phone">{{ professors.phone }}</div>
+        <br />
+        <label for="matieres" class="label">Matieres :</label>
+        <div id="matieres">{{ professors.matieres }}</div>
+        <br />
+        <label for="description" class="label">Description :</label>
+        <div id="description">{{ professors.description }}</div>
+        <br />
+        <label for="information_bancaire" class="label"
+          >Informations banquaires :</label
+        >
+        <div id="information_bancaire">
+          {{ professors.information_bancaire }}
+        </div>
+        <br />
+        <label for="cours" class="label">Cours :</label>
+        <div id="cours">{{ professors.cours }}</div>
+        <br />
+        <label for="notes" class="label">Notes :</label>
+        <div id="notes">{{ professors.notes }}</div>
+        <br />
+        <label for="commentaires" class="label">Commentaires :</label>
+        <div id="commentaires">{{ professors.commentaires }}</div>
+        <br />
+        <router-link :to="`/listeprofs`">
+          <button type="button" class="redirect_button">
+            Retour
+          </button></router-link
+        >
+      </div>
+    </div>
   </div>
 </template>
 
@@ -66,7 +89,7 @@ export default {
     GetMyInfo(profid) {
       console.log(profid);
       axios
-        .get("https://89.234.182.164:8000/api/professor/" + profid, {
+        .get("http://89.234.182.164:8000/api/professor/" + profid, {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -89,28 +112,10 @@ export default {
 <style scoped>
 .container {
   font-family: "poppins", sans-serif;
-  max-width: 600px;
+  width: 900px;
+  height: 300px;
   text-align: center;
-}
-
-input {
-  color: #222a35;
-  opacity: 1;
-  height: 47px;
-  border: 1px solid #d8efdb;
-  background-color: transparent;
-  border-radius: 5px;
-  padding-left: 28px;
-  padding-right: 28px;
-  padding-top: 9px;
-  padding-bottom: 9px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 80%;
-}
-input::placeholder {
-  color: black;
-  text-align: center;
+  margin-bottom: 300px;
 }
 .title {
   letter-spacing: -2px;
@@ -124,14 +129,87 @@ input::placeholder {
   margin-top: 70px;
   margin-bottom: 40px;
 }
-label {
-  font-size: 15px !important;
-  font-weight: lighter;
-  margin-top: 10px;
+.detailprof {
+  padding: 45px 50px 47px;
+  border: 1px solid #d8efdb;
+  border-radius: 5px !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
-.proflist {
-  font-weight: bold;
-  font-size: 20px;
-  margin-bottom: 10px;
+.gauche {
+  width: 300px;
+}
+.bi {
+  font-size: 250px;
+  color: rgb(238, 238, 238);
+}
+.username {
+  font-size: 36px;
+  color: #222a35;
+  text-align: center !important;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+}
+.droite {
+  padding-left: 40px;
+  width: 500px;
+  text-align: left;
+}
+.donnees {
+  font-size: 26px;
+  color: #222a35;
+  letter-spacing: 1px;
+  font-weight: 700;
+  line-height: 1;
+  word-break: break-word;
+  font-family: inherit;
+  margin-bottom: 15px;
+}
+.label {
+  color: #768292;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+#age,
+#adresse,
+#phone,
+#matieres,
+#description,
+#information_bancaire,
+#cours,
+#notes,
+#commentaires {
+  color: #2a323c;
+  font-family: "poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
+  display: inline-block;
+  margin-left: 10px;
+}
+.redirect_button {
+  background-color: #5caf01;
+  border: 2px solid #5caf01;
+  color: white;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 300ms ease-out;
+}
+.redirect_button:hover {
+  background-color: transparent;
+  border: 2px solid #5caf01;
+  color: black;
 }
 </style>
