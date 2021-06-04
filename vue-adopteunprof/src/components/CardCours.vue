@@ -34,10 +34,10 @@
                   <!--{{ professors.firstname }} {{ professors.lastname }}-->
                   {{ annonces.professor_name }}
                 </button>
-                                <router-link to="/chat" class="btn-chat">
-                  <i class="bi bi-chat-dots"></i>
-                  <i class="bi bi-chat-dots-fill"></i>
-                </router-link>
+                                <!-- <router-link to="/chat" class="btn-chat"> -->
+                  <i href="http://www.under-wolf.eu/chat" class="bi bi-chat-dots btn-chat"></i>
+                  <i href="http://www.under-wolf.eu/chat" class="bi bi-chat-dots-fill btn-chat"></i>
+                <!-- </router-link> -->
               </div>
               <br />
               <div class="matière">

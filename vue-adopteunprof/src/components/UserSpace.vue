@@ -162,7 +162,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("http://89.234.182.164:8000/api/login", {
+        .post("https://89.234.182.164:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -194,7 +194,7 @@ export default {
         this.pwderrormessage = "";
         axios
           .put(
-            "http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"),
+            "https://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"),
             {
               password: this.old_pwd,
               name: this.users.name,
@@ -214,7 +214,7 @@ export default {
     UpdateMyName() {
       //NAME :
       axios
-        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("https://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.pwd,
           name: this.name,
           email: this.email,
@@ -229,7 +229,7 @@ export default {
     UpdateMyEmail() {
       //EMAIL :
       axios
-        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("https://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.pwd,
           name: this.users.name,
           email: this.logemail,
@@ -245,7 +245,7 @@ export default {
     GetMyInfo() {
       //USER :
       axios
-        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("https://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

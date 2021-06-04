@@ -69,7 +69,7 @@ export default {
       // var token = this.$cookies.get("authtoken");
       axios
         .post(
-          "http://89.234.182.164:8000/api/annonces",
+          "https://89.234.182.164:8000/api/annonces",
           {
             professorID: this.$cookies.get("profID"),
             professor_name: this.professor_name,
@@ -93,7 +93,7 @@ export default {
     },
     async GetMyInfo() {
       axios
-        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("https://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

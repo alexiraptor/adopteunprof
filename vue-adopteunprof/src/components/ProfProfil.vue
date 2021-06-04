@@ -66,7 +66,7 @@ export default {
     GetMyInfo(profid) {
       console.log(profid);
       axios
-        .get("http://89.234.182.164:8000/api/professor/" + profid, {
+        .get("https://89.234.182.164:8000/api/professor/" + profid, {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

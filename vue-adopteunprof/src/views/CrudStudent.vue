@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      url: "http://89.234.182.164:8000/api/student",
+      url: "https://89.234.182.164:8000/api/student",
       students: [],
       form: {
         userID: "",

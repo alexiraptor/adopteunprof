@@ -171,7 +171,7 @@ export default {
           console.log("ATTEMPT TO CREATE PROFESSOR PROFILE");
           axios
             .post(
-              "http://89.234.182.164:8000/api/" + this.profiltype,
+              "https://89.234.182.164:8000/api/" + this.profiltype,
               {
                 userID: userID,
                 firstname: this.firstname,
@@ -206,7 +206,7 @@ export default {
           console.log("ATTEMPT TO CREATE STUDENT PROFILE");
           axios
             .post(
-              "http://89.234.182.164:8000/api/" + this.profiltype,
+              "https://89.234.182.164:8000/api/" + this.profiltype,
               {
                 userID: userID,
                 age: this.age,
