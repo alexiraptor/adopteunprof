@@ -176,7 +176,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("http://89.234.182.164:8000/api/login", {
+        .post("http://localhost:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -211,7 +211,7 @@ export default {
         if (this.new_email == "") this.new_email = this.email;
         axios
           .put(
-            "http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"),
+            "http://localhost:8000/api/users/" + this.$cookies.get("userID"),
             {
               password: this.old_pwd,
               name: this.new_name,
@@ -234,7 +234,7 @@ export default {
       if (this.new_name == "") this.new_name = this.name;
       if (this.new_email == "") this.new_email = this.email;
       axios
-        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("http://localhost:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.old_pwd,
           name: this.new_name,
           email: this.new_email,
@@ -252,7 +252,7 @@ export default {
       if (this.new_name == "") this.new_name = this.name;
       if (this.new_email == "") this.new_email = this.email;
       axios
-        .put("http://89.234.182.164:8000/api/users/" + this.$cookies.get("userID"), {
+        .put("http://localhost:8000/api/users/" + this.$cookies.get("userID"), {
           password: this.old_pwd,
           name: this.new_name,
           email: this.new_email,
@@ -268,7 +268,7 @@ export default {
     GetMyInfo() {
       //USER :
       axios
-        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("http://localhost:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

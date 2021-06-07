@@ -37,7 +37,7 @@
       <div class="button-search">
         <button type="button" class="btn-success">Rechercher</button>
       </div> -->
-      <Searchbar @cour="cour" />
+      <Searchbar @cour="cours" />
       <div class="button-category">
         <button
           type="button"
@@ -66,16 +66,24 @@
           :src="require('@/assets/icon-computer.png')"
           class="icon-computer"
         />
-        <button type="button" class="btn-eco">Economie</button>
+        <button type="button" v-on:click="cours('economie')" class="btn-eco">
+          Economie
+        </button>
         <img :src="require('@/assets/icon-economy.png')" class="icon-economy" />
-        <button type="button" class="btn-geo">Géographie</button>
+        <button type="button" v-on:click="cours('geographie')" class="btn-geo">
+          Géographie
+        </button>
         <img
           :src="require('@/assets/icon-geography.png')"
           class="icon-geography"
         />
-        <button type="button" class="btn-bio">Biologie</button>
+        <button type="button" v-on:click="cours('biologie')" class="btn-bio">
+          Biologie
+        </button>
         <img :src="require('@/assets/icon-biology.png')" class="icon-biology" />
-        <button type="button" class="btn-chimie">Chimie</button>
+        <button type="button" v-on:click="cours('chimie')" class="btn-chimie">
+          Chimie
+        </button>
         <img
           :src="require('@/assets/icon-chemistry.png')"
           class="icon-chemistry"
@@ -96,7 +104,6 @@
     </div>
     <div class="cours-populaires">
       <h6 class="pop">Cours récemment ajoutés</h6>
-
       <div class="card">
         <div class="card2" v-if="filteredAnnonces.length > 0">
           <!--<CardCours
@@ -110,7 +117,7 @@
             v-bind:key="annonce"
           />
         </div>
-        <div v-else-if="$cookies == ''">
+        <div v-else-if="filteredAnnonces.length === 0 && token_cookie">
           <p class="msg center">Rien ne correspond à votre recherche</p>
         </div>
         <div v-else>
@@ -155,6 +162,7 @@ export default {
       filteredAnnonces: [],
       productsPerPage: 12,
       page: 1,
+      token_cookie: "",
     };
   },
   methods: {
@@ -227,9 +235,9 @@ export default {
   },
   created() {
     var token = this.$cookies.get("authtoken");
-    console.log(token);
+    this.token_cookie = this.$cookies.get("authtoken");
     axios
-      .get("http://89.234.182.164:8000/api/annonces", {
+      .get("http://localhost:8000/api/annonces", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

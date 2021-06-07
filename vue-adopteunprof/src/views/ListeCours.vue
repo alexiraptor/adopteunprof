@@ -111,7 +111,7 @@ export default {
     var token = this.$cookies.get("authtoken");
     console.log(token);
     axios
-      .get("http://89.234.182.164:8000/api/annonces", {
+      .get("http://localhost:8000/api/annonces", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

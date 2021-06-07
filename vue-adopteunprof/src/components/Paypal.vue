@@ -92,7 +92,7 @@ export default {
       //let id = this.$route.query.id;
 
       axios
-        .get(`http://89.234.182.164:8000/api/annonces/${this.$route.query.id}`, {
+        .get(`http://localhost:8000/api/annonces/${this.$route.query.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

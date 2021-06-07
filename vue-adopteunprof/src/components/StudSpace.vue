@@ -199,7 +199,7 @@ export default {
     },
     Loginperso() {
       axios
-        .post("http://89.234.182.164:8000/api/login", {
+        .post("http://localhost:8000/api/login", {
           email: this.email,
           password: this.pwd,
         })
@@ -227,7 +227,7 @@ export default {
       if (input == "hobby") {
         axios
           .patch(
-            "http://89.234.182.164:8000/api/student/" +
+            "http://localhost:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               hobby: this.hobby,
@@ -247,7 +247,7 @@ export default {
       } else if (input == "description") {
         axios
           .patch(
-            "http://89.234.182.164:8000/api/student/" +
+            "http://localhost:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               description: this.description,
@@ -267,7 +267,7 @@ export default {
       } else if (input == "banque") {
         axios
           .patch(
-            "http://89.234.182.164:8000/api/student/" +
+            "http://localhost:8000/api/student/" +
               this.$cookies.get("studentID"),
             {
               information_bancaire: this.banque,
@@ -290,7 +290,7 @@ export default {
     GetMyInfo() {
       //STUDENT :
       axios
-        .get("http://89.234.182.164:8000/api/stud/" + this.$cookies.get("userID"), {
+        .get("http://localhost:8000/api/stud/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -311,7 +311,7 @@ export default {
 
       //USER :
       axios
-        .get("http://89.234.182.164:8000/api/user/" + this.$cookies.get("userID"), {
+        .get("http://localhost:8000/api/user/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },

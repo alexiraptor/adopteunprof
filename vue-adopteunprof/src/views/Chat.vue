@@ -159,7 +159,7 @@ export default {
       document.getElementById("leave-btn").addEventListener("click", () => {
         const leaveRoom = confirm("Êtes-vous sûr de vouloir quitter le chat ?");
         if (leaveRoom) {
-          window.location.href = "http://www.under-wolf.eu/";
+          window.location.href = "https://www.under-wolf.eu/";
         } else {
         }
       });

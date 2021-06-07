@@ -10,7 +10,7 @@
         <tr>
           <th class="colonne-nom">Nom</th>
           <th class="colonne-loc">Localisation</th>
-          <th class="colonne-mat">Matière ensignée</th>
+          <th class="colonne-mat">Matière enseignée</th>
           <th class="colonne-des">Description</th>
           <th class="colonne-det">Détails</th>
         </tr>
@@ -37,7 +37,7 @@
         </tr>
       </tbody>
     </table>
-      <Map />
+    <Map />
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
   props: {
     professors: Object,
   },
-    components: {
+  components: {
     ProfessorList,
     Loader,
     Map,
@@ -60,7 +60,7 @@ export default {
 
   data() {
     return {
-      url: "http://89.234.182.164:8000/api/professor",
+      url: "http://localhost:8000/api/professor",
       professors: [],
     };
   },
@@ -144,6 +144,7 @@ export default {
   border: 2px solid #5caf01;
   color: white;
 }
+
 .tableau {
   margin: auto;
   margin-bottom: 16px;
@@ -156,6 +157,7 @@ export default {
 thead tr th {
   background-color: #5caf01 !important;
   color: white;
+  padding-left: 10px;
   padding-top: 8px;
   padding-bottom: 8px;
 }

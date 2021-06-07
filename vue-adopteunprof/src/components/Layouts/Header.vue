@@ -3,10 +3,14 @@
     <header class="page_header">
       <div class="container">
         <div class="align-items-center">
-          <img
-            :src="require('@/assets/logo-adopte-un-prof.png')"
-            class="logo"
-          />
+          <div class="logohead">
+            <router-link :to="`/`">
+              <img
+                :src="require('@/assets/logo-adopte-un-prof.png')"
+                class="logo"
+              />
+            </router-link>
+          </div>
 
           <div class="col-xl-7 d-xl-block">
             <nav class="top-nav justify-content-start" style="">
@@ -179,7 +183,8 @@ export default {
 .align-items-center {
   align-items: center !important;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   margin-right: -15px;
   margin-left: -15px;
   box-sizing: border-box;
@@ -188,12 +193,10 @@ export default {
 
 .logo {
   flex: 0 0 20%;
-  max-width: 20%;
-  position: relative;
+  max-width: 100%;
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
-  display: inline-block;
   height: auto;
   margin-top: -10px;
 }

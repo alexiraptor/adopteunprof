@@ -72,7 +72,7 @@ export default {
             // console.log("PWD MATCHES");
             console.log("ATTEMPT TO CREATE USER");
             axios
-              .post("http://89.234.182.164:8000/api/register", {
+              .post("http://localhost:8000/api/register", {
                 facebookID: "NONE",
                 name: this.name,
                 email: this.email,

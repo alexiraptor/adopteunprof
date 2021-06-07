@@ -80,9 +80,11 @@
           >
         </div>
         <div class="form-group">
-          <button type="button" v-on:click="Ratings" id="post" class="btn">
-            Envoyer !
-          </button>
+          <router-link to="/comments">
+            <button type="button" v-on:click="Ratings" id="post" class="btn">
+              Envoyer !
+            </button>
+          </router-link>
         </div>
       </form>
     </div>
@@ -104,7 +106,7 @@ export default {
     GetMyInfo() {
       //PROF :
       axios
-        .get("http://89.234.182.164:8000/api/prof/" + this.$cookies.get("userID"), {
+        .get("http://localhost:8000/api/prof/" + this.$cookies.get("userID"), {
           headers: {
             Authorization: `Bearer ${this.token}`,
           },
@@ -126,7 +128,7 @@ export default {
     Ratings() {
       var token = this.$cookies.get("authtoken");
       const url =
-        "http://89.234.182.164:8000/api/professor/" + this.$cookies.get("profID");
+        "http://127.0.0.1:8000/api/professor/" + this.$cookies.get("profID");
       console.log(url);
       const data = {
         rating: localStorage.note,
@@ -139,10 +141,10 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         })
-        .then(function(response) {
+        .then(function (response) {
           console.log(JSON.stringify(response.data));
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     },

@@ -34,7 +34,7 @@
                   <!--{{ professors.firstname }} {{ professors.lastname }}-->
                   {{ annonces.professor_name }}
                 </button>
-                                <router-link to="/chat" class="btn-chat">
+                <router-link to="/chat" class="btn-chat">
                   <i class="bi bi-chat-dots"></i>
                   <i class="bi bi-chat-dots-fill"></i>
                 </router-link>
@@ -44,9 +44,9 @@
                 <a>Matière</a>
               </div>
               <div class="button">
-                <button type="button" class="btn">
+                <p type="text" class="bt">
                   {{ annonces.matieres }}
-                </button>
+                </p>
               </div>
               <br />
               <div class="bloc-price">
@@ -238,10 +238,9 @@ h6 {
 
 .btn-chat:hover .bi-chat-dots,
 .btn-chat .bi-chat-dots-fill {
-    display: none;
+  display: none;
 }
 .btn-chat:hover .bi-chat-dots-fill {
-    display: inline;
+  display: inline;
 }
-
 </style>

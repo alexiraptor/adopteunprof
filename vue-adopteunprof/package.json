@@ -10,6 +10,7 @@
   "dependencies": {
     "@dicebear/avatars": "^4.6.4",
     "@dicebear/micah": "^4.6.4",
+    "@googlemaps/js-api-loader": "^1.11.4",
     "axios": "^0.21.1",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",

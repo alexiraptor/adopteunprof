@@ -31,13 +31,10 @@
             <a class="mb-2 section-item" href="../About"> Qui sommes-nous ? </a>
 
             <br />
-            <a class="mb-2 section-item"> Livraison </a>
-            <br />
+
             <a class="mb-2 section-item" href="../Conditions">
               Conditions générales d'utilisation
             </a>
-            <br />
-            <a class="mb-2 section-item"> Mentions générales </a>
             <br />
           </div>
         </div>
@@ -47,11 +44,9 @@
             Mon compte
           </h6>
           <div class="section-body" ref="footerAccount">
-            <a class="mb-2 section-item"> Mon compte </a>
-            <br />
-            <a class="mb-2 section-item"> Historique des achats </a>
-            <br />
-            <a class="mb-2 section-item"> Plan du site </a>
+            <router-link to="/personalspace/user">
+              <a class="mb-2 section-item"> Mon compte </a>
+            </router-link>
             <br />
           </div>
         </div>
